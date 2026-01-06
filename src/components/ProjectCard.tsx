@@ -12,11 +12,11 @@ const ProjectCard = ({ title, description, image, index }: ProjectCardProps) => 
       style={{ animationDelay: `${0.1 * index}s` }}
     >
       {/* Image container */}
-      <div className="aspect-[4/5] overflow-hidden">
+      <div className="aspect-[4/3] overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
         />
       </div>
       

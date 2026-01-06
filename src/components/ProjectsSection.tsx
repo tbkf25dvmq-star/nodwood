@@ -1,12 +1,13 @@
 import ProjectCard from "./ProjectCard";
+import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
 
-// Placeholder projects - these will be replaced with real photos
-const placeholderProjects = [
+// Projects - mix of real photos and placeholders
+const projects = [
   {
     id: 1,
-    title: "Tagliere in Noce",
-    description: "Tagliere artigianale realizzato in legno di noce massello",
-    image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&h=750&fit=crop&q=80",
+    title: "Libreria in Castagno Antico",
+    description: "Libreria realizzata interamente in castagno antico, lavorata a mano senza l'uso di viti",
+    image: libreriaCastagno,
   },
   {
     id: 2,
@@ -57,7 +58,7 @@ const ProjectsSection = () => {
 
         {/* Projects grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {placeholderProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
               title={project.title}

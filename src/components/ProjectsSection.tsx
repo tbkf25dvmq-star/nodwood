@@ -1,6 +1,7 @@
 import ProjectCard from "./ProjectCard";
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
 import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.png";
+import consolleIndustrial from "@/assets/projects/consolle-industrial.png";
 
 // Projects - mix of real photos and placeholders
 const projects = [
@@ -18,9 +19,9 @@ const projects = [
   },
   {
     id: 3,
-    title: "Portacandele",
-    description: "Set di portacandele in legno di faggio lavorato a mano",
-    image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&h=750&fit=crop&q=80",
+    title: "Consolle Industrial",
+    description: "Tavolo da lavoro e consolle d'ingresso in castagno antico lavorato a mano, con gambe in ferro pieno grezzo e saldature a vista",
+    image: consolleIndustrial,
   },
   {
     id: 4,

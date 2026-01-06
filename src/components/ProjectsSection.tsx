@@ -1,5 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
+import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.png";
 
 // Projects - mix of real photos and placeholders
 const projects = [
@@ -11,9 +12,9 @@ const projects = [
   },
   {
     id: 2,
-    title: "Mensola Rustica",
-    description: "Mensola da parete con bordo naturale in legno di ulivo",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=750&fit=crop&q=80",
+    title: "Mobile TV Industrial",
+    description: "Mobile TV in stile industrial con gambe in ferro naturale non verniciato e contenitori in stoffa nera a contrasto",
+    image: mobileTvIndustrial,
   },
   {
     id: 3,

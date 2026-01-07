@@ -2,6 +2,7 @@ import ProjectCard from "./ProjectCard";
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
 import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.png";
 import consolleIndustrial from "@/assets/projects/consolle-industrial.png";
+import lampadaSospensione from "@/assets/projects/lampada-sospensione-industrial.png";
 
 // Projects - mix of real photos and placeholders
 const projects = [
@@ -31,9 +32,9 @@ const projects = [
   },
   {
     id: 5,
-    title: "Lampada da Tavolo",
-    description: "Lampada artigianale con base in legno di ciliegio",
-    image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&h=750&fit=crop&q=80",
+    title: "Sospensione a 3 Luci Industrial Wood",
+    description: "Linee geometriche e carattere grezzo. Realizzato in legno massello lavorato a mano con tre punti luce regolabili, perfetto per cucina moderna o sala da pranzo rustico-contemporanea",
+    image: lampadaSospensione,
   },
   {
     id: 6,

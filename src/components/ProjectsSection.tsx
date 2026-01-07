@@ -1,7 +1,7 @@
 import ProjectCard from "./ProjectCard";
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
 import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.png";
-import consolleIndustrial from "@/assets/projects/consolle-industrial.png";
+import consolleIndustrial from "@/assets/projects/consolle-industrial-styled.png";
 import lampadaSospensione from "@/assets/projects/lampada-sospensione-industrial.png";
 
 // Projects - mix of real photos and placeholders

@@ -49,7 +49,7 @@ const AboutSection = () => {
             {/* Signature or name */}
             <div className="pt-4">
               <p className="font-display text-2xl italic text-foreground">
-                — Il tuo nome
+                — Dario Scio
               </p>
               <p className="font-body text-sm text-muted-foreground mt-1">
                 Artigiano del legno

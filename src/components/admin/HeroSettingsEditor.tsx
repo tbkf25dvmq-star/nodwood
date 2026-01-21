@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, RotateCcw } from "lucide-react";
+import heroCarpetTexture from "@/assets/hero-carpet-texture.jpeg";
 
 const HeroSettingsEditor = () => {
   const { data: settings, isLoading } = useHeroSettings();
@@ -24,14 +25,21 @@ const HeroSettingsEditor = () => {
   }, [settings]);
 
   const handleSave = async () => {
+    if (!settings?.id) {
+      toast.error("Impostazioni non trovate");
+      return;
+    }
+    
     try {
       await updateSettings.mutateAsync({
+        id: settings.id,
         scale,
         rotation,
         position_y: positionY,
       });
       toast.success("Impostazioni sfondo salvate!");
     } catch (error) {
+      console.error("Error saving settings:", error);
       toast.error("Errore nel salvare le impostazioni");
     }
   };
@@ -65,20 +73,19 @@ const HeroSettingsEditor = () => {
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Preview Box */}
-        <div className="relative w-full h-32 overflow-hidden rounded-lg border bg-muted">
+        <div className="relative w-full h-32 overflow-hidden rounded-lg border">
           <div 
             className="absolute -inset-8 bg-cover"
             style={{
-              backgroundImage: `url(/hero-carpet-preview.jpg)`,
+              backgroundImage: `url(${heroCarpetTexture})`,
               backgroundPosition: `left ${positionY}%`,
               transform: `rotate(${rotation}deg) scale(${scale})`,
               transformOrigin: 'center center',
-              backgroundColor: 'hsl(var(--muted))',
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-sm text-muted-foreground">Anteprima</p>
+            <p className="text-sm font-medium text-foreground">Anteprima Live</p>
           </div>
         </div>
 

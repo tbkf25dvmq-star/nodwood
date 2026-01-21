@@ -16,10 +16,10 @@ export const useHeroSettings = () => {
       const { data, error } = await supabase
         .from("hero_settings")
         .select("*")
-        .single();
+        .maybeSingle();
       
       if (error) throw error;
-      return data as HeroSettings;
+      return data as HeroSettings | null;
     },
   });
 };
@@ -28,10 +28,11 @@ export const useUpdateHeroSettings = () => {
   const queryClient = useQueryClient();
   
   return useMutation({
-    mutationFn: async (settings: Partial<Omit<HeroSettings, "id">>) => {
+    mutationFn: async ({ id, ...settings }: { id: string } & Partial<Omit<HeroSettings, "id">>) => {
       const { data, error } = await supabase
         .from("hero_settings")
         .update(settings)
+        .eq("id", id)
         .select()
         .single();
       

@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          image_url: string | null
           position_y: number
           rotation: number
           scale: number
@@ -26,6 +27,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          image_url?: string | null
           position_y?: number
           rotation?: number
           scale?: number
@@ -34,6 +36,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          image_url?: string | null
           position_y?: number
           rotation?: number
           scale?: number
@@ -45,6 +48,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          image_url: string | null
           position_x: string
           position_y: number
           rotation: number
@@ -54,6 +58,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          image_url?: string | null
           position_x?: string
           position_y?: number
           rotation?: number
@@ -63,6 +68,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          image_url?: string | null
           position_x?: string
           position_y?: number
           rotation?: number

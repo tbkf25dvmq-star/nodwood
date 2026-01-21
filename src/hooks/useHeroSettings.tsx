@@ -7,6 +7,7 @@ export interface HeroSettings {
   rotation: number;
   position_x: string;
   position_y: number;
+  image_url: string | null;
 }
 
 export const useHeroSettings = () => {

@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, RotateCcw } from "lucide-react";
 import carpetImage from "@/assets/decorative-carpet.png";
+import ImageUploader from "./ImageUploader";
 
 const BannerSettingsEditor = () => {
   const { data: settings, isLoading } = useBannerSettings();
@@ -15,14 +16,18 @@ const BannerSettingsEditor = () => {
   const [scale, setScale] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [positionY, setPositionY] = useState(50);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (settings) {
       setScale(settings.scale);
       setRotation(settings.rotation);
       setPositionY(settings.position_y);
+      setImageUrl(settings.image_url);
     }
   }, [settings]);
+
+  const displayImage = imageUrl || carpetImage;
 
   const handleSave = async () => {
     if (!settings?.id) {
@@ -36,6 +41,7 @@ const BannerSettingsEditor = () => {
         scale,
         rotation,
         position_y: positionY,
+        image_url: imageUrl,
       });
       toast.success("Impostazioni banner salvate!");
     } catch (error) {
@@ -48,6 +54,7 @@ const BannerSettingsEditor = () => {
     setScale(1);
     setRotation(0);
     setPositionY(50);
+    setImageUrl(null);
   };
 
   if (isLoading) {
@@ -72,10 +79,19 @@ const BannerSettingsEditor = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
+        {/* Image Upload */}
+        <ImageUploader
+          currentImageUrl={imageUrl}
+          defaultImage={carpetImage}
+          onImageChange={setImageUrl}
+          label="Immagine di sfondo"
+          bucketPath="banner"
+        />
+
         {/* Preview Box */}
         <div className="relative w-full h-32 overflow-hidden rounded-lg border">
           <img 
-            src={carpetImage}
+            src={displayImage}
             alt="Anteprima banner"
             className="absolute inset-0 w-full h-full"
             style={{

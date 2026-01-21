@@ -9,6 +9,7 @@ const HeroSection = () => {
   const scale = settings?.scale ? Number(settings.scale) : 1.15;
   const rotation = settings?.rotation ?? -10;
   const positionY = settings?.position_y ?? 30;
+  const backgroundImage = settings?.image_url || heroCarpetTexture;
 
   const scrollToProjects = () => {
     const element = document.getElementById("progetti");
@@ -26,7 +27,7 @@ const HeroSection = () => {
       <div 
         className="absolute -inset-40 bg-cover"
         style={{
-          backgroundImage: `url(${heroCarpetTexture})`,
+          backgroundImage: `url(${backgroundImage})`,
           backgroundPosition: `left ${positionY}%`,
           transform: `rotate(${rotation}deg) scale(${scale})`,
           transformOrigin: 'center center',

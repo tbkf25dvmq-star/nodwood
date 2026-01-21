@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, RotateCcw } from "lucide-react";
 import heroCarpetTexture from "@/assets/hero-carpet-texture.jpeg";
+import ImageUploader from "./ImageUploader";
 
 const HeroSettingsEditor = () => {
   const { data: settings, isLoading } = useHeroSettings();
@@ -15,14 +16,18 @@ const HeroSettingsEditor = () => {
   const [scale, setScale] = useState(1.15);
   const [rotation, setRotation] = useState(-10);
   const [positionY, setPositionY] = useState(30);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (settings) {
       setScale(Number(settings.scale));
       setRotation(settings.rotation);
       setPositionY(settings.position_y);
+      setImageUrl(settings.image_url);
     }
   }, [settings]);
+
+  const displayImage = imageUrl || heroCarpetTexture;
 
   const handleSave = async () => {
     if (!settings?.id) {
@@ -36,6 +41,7 @@ const HeroSettingsEditor = () => {
         scale,
         rotation,
         position_y: positionY,
+        image_url: imageUrl,
       });
       toast.success("Impostazioni sfondo salvate!");
     } catch (error) {
@@ -48,6 +54,7 @@ const HeroSettingsEditor = () => {
     setScale(1.15);
     setRotation(-10);
     setPositionY(30);
+    setImageUrl(null);
   };
 
   if (isLoading) {
@@ -72,12 +79,21 @@ const HeroSettingsEditor = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
+        {/* Image Upload */}
+        <ImageUploader
+          currentImageUrl={imageUrl}
+          defaultImage={heroCarpetTexture}
+          onImageChange={setImageUrl}
+          label="Immagine di sfondo"
+          bucketPath="hero"
+        />
+
         {/* Preview Box */}
         <div className="relative w-full h-32 overflow-hidden rounded-lg border">
           <div 
             className="absolute -inset-8 bg-cover"
             style={{
-              backgroundImage: `url(${heroCarpetTexture})`,
+              backgroundImage: `url(${displayImage})`,
               backgroundPosition: `left ${positionY}%`,
               transform: `rotate(${rotation}deg) scale(${scale})`,
               transformOrigin: 'center center',

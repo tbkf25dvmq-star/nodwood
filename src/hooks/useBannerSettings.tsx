@@ -1,11 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
-interface BannerSettings {
+export interface BannerSettings {
   id: string;
   scale: number;
   rotation: number;
   position_y: number;
+  image_url: string | null;
   created_at: string;
   updated_at: string;
 }

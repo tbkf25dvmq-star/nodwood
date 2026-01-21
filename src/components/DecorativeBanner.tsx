@@ -7,11 +7,12 @@ const DecorativeBanner = () => {
   const scale = settings?.scale ?? 1;
   const rotation = settings?.rotation ?? 0;
   const positionY = settings?.position_y ?? 50;
+  const displayImage = settings?.image_url || carpetImage;
 
   return (
     <section className="w-full h-48 md:h-64 lg:h-80 overflow-hidden">
       <img 
-        src={carpetImage} 
+        src={displayImage}
         alt="Tappeto decorativo artigianale"
         className="w-full h-full"
         style={{

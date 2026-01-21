@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
+import HeroSettingsEditor from "@/components/admin/HeroSettingsEditor";
 import { 
   Plus, 
   Trash2, 
@@ -19,7 +20,8 @@ import {
   EyeOff,
   Upload,
   Star,
-  ArrowLeft
+  ArrowLeft,
+  Settings
 } from "lucide-react";
 
 const Admin = () => {
@@ -30,6 +32,7 @@ const Admin = () => {
   
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isCreating, setIsCreating] = useState(false);
+  const [showHeroSettings, setShowHeroSettings] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -239,14 +242,29 @@ const Admin = () => {
               </a>
               <h1 className="font-display text-xl">Gestione Progetti</h1>
             </div>
-            <Button variant="ghost" onClick={() => signOut().then(() => navigate("/"))}>
-              <LogOut className="w-4 h-4 mr-2" />
-              Esci
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button 
+                variant={showHeroSettings ? "default" : "outline"} 
+                size="sm"
+                onClick={() => setShowHeroSettings(!showHeroSettings)}
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Hero
+              </Button>
+              <Button variant="ghost" onClick={() => signOut().then(() => navigate("/"))}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Esci
+              </Button>
+            </div>
           </div>
         </header>
 
         <div className="container mx-auto px-6 py-8">
+          {showHeroSettings ? (
+            <div className="max-w-md mx-auto">
+              <HeroSettingsEditor />
+            </div>
+          ) : (
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Projects list */}
             <div className="lg:col-span-1 space-y-4">
@@ -449,6 +467,7 @@ const Admin = () => {
               )}
             </div>
           </div>
+          )}
         </div>
       </div>
     </>

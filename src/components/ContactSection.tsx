@@ -23,7 +23,7 @@ const ContactSection = () => {
           {/* Contact info cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
             <a
-              href="mailto:info@esempio.it"
+              href="mailto:danieles.85@icloud.com"
               className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
             >
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-accent/10 transition-colors">
@@ -31,12 +31,12 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="font-body text-sm text-muted-foreground">Email</p>
-                <p className="font-body text-foreground">info@esempio.it</p>
+                <p className="font-body text-foreground">danieles.85@icloud.com</p>
               </div>
             </a>
 
             <a
-              href="tel:+390123456789"
+              href="tel:+393518478405"
               className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
             >
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-accent/10 transition-colors">
@@ -44,7 +44,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="font-body text-sm text-muted-foreground">Telefono</p>
-                <p className="font-body text-foreground">+39 012 345 6789</p>
+                <p className="font-body text-foreground">+39 351 847 8405</p>
               </div>
             </a>
 

@@ -2,7 +2,7 @@ import decorativeCarpet from "@/assets/decorative-carpet.jpg";
 
 const DecorativeBanner = () => {
   return (
-    <div className="w-full h-64 md:h-80 lg:h-96 overflow-hidden">
+    <div className="w-full h-72 md:h-96 lg:h-[28rem] overflow-hidden">
       <img
         src={decorativeCarpet}
         alt="Dettaglio tappeto persiano"

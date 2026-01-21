@@ -15,8 +15,8 @@ const ContactSection = () => {
             </h2>
             <div className="w-24 h-px bg-accent mx-auto mt-8" />
             <p className="font-body text-muted-foreground mt-8 max-w-xl mx-auto leading-relaxed">
-              Hai un progetto in mente o vuoi semplicemente saperne di più sulle mie creazioni? 
-              Scrivimi, sarò felice di risponderti.
+              Hai un progetto in mente o vuoi semplicemente saperne di più sulle nostre creazioni? 
+              Scrivici, saremo felici di risponderti.
             </p>
           </div>
 

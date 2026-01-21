@@ -20,27 +20,33 @@ const AboutSection = () => {
           <div className="space-y-8 order-1 lg:order-2">
             <div>
               <p className="font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-                La Mia Storia
+                La Nostra Storia
               </p>
               <h2 className="font-display text-4xl md:text-5xl font-light text-foreground leading-tight">
-                Chi Sono
+                Chi Siamo
               </h2>
               <div className="w-16 h-px bg-accent mt-6" />
             </div>
 
             <div className="space-y-6 font-body text-muted-foreground leading-relaxed">
               <p>
-                La passione per il legno mi accompagna da sempre. Quello che è iniziato 
-                come un hobby si è trasformato in una vera e propria missione: dare nuova 
-                vita al legno attraverso creazioni uniche e funzionali.
+                La passione per il legno ci accompagna da sempre. Siamo padre e figlio, 
+                uniti da un amore condiviso per la lavorazione del legno che si tramanda 
+                di generazione in generazione.
               </p>
               <p>
-                Ogni pezzo che realizzo racconta una storia. Dalla scelta del legno grezzo 
-                alla rifinitura finale, dedico cura e attenzione a ogni dettaglio, 
+                Quello che è iniziato come un hobby nel laboratorio di famiglia si è 
+                trasformato in una vera e propria missione: dare nuova vita al legno 
+                attraverso creazioni uniche e funzionali, unendo l'esperienza della 
+                tradizione con la freschezza delle nuove idee.
+              </p>
+              <p>
+                Ogni pezzo che realizziamo racconta una storia. Dalla scelta del legno grezzo 
+                alla rifinitura finale, dedichiamo cura e attenzione a ogni dettaglio, 
                 rispettando le venature naturali e valorizzando l'unicità di ogni essenza.
               </p>
               <p>
-                Il mio laboratorio è il luogo dove tradizione e creatività si incontrano, 
+                Il nostro laboratorio è il luogo dove tradizione e creatività si incontrano, 
                 dove nascono oggetti pensati per durare nel tempo e portare un tocco di 
                 calore naturale nelle case.
               </p>
@@ -49,10 +55,10 @@ const AboutSection = () => {
             {/* Signature or name */}
             <div className="pt-4">
               <p className="font-display text-2xl italic text-foreground">
-                — Dario Sciò
+                — Dario & Daniele
               </p>
               <p className="font-body text-sm text-muted-foreground mt-1">
-                Artigiano del legno
+                Artigiani del legno
               </p>
             </div>
           </div>

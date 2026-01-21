@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      banner_settings: {
+        Row: {
+          created_at: string
+          id: string
+          position_y: number
+          rotation: number
+          scale: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          position_y?: number
+          rotation?: number
+          scale?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          position_y?: number
+          rotation?: number
+          scale?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       hero_settings: {
         Row: {
           created_at: string

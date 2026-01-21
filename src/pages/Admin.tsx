@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import HeroSettingsEditor from "@/components/admin/HeroSettingsEditor";
+import BannerSettingsEditor from "@/components/admin/BannerSettingsEditor";
 import { 
   Plus, 
   Trash2, 
@@ -33,6 +34,7 @@ const Admin = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [showHeroSettings, setShowHeroSettings] = useState(false);
+  const [showBannerSettings, setShowBannerSettings] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -246,10 +248,18 @@ const Admin = () => {
               <Button 
                 variant={showHeroSettings ? "default" : "outline"} 
                 size="sm"
-                onClick={() => setShowHeroSettings(!showHeroSettings)}
+                onClick={() => { setShowHeroSettings(!showHeroSettings); setShowBannerSettings(false); }}
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Hero
+              </Button>
+              <Button 
+                variant={showBannerSettings ? "default" : "outline"} 
+                size="sm"
+                onClick={() => { setShowBannerSettings(!showBannerSettings); setShowHeroSettings(false); }}
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Banner
               </Button>
               <Button variant="ghost" onClick={() => signOut().then(() => navigate("/"))}>
                 <LogOut className="w-4 h-4 mr-2" />
@@ -263,6 +273,10 @@ const Admin = () => {
           {showHeroSettings ? (
             <div className="max-w-md mx-auto">
               <HeroSettingsEditor />
+            </div>
+          ) : showBannerSettings ? (
+            <div className="max-w-md mx-auto">
+              <BannerSettingsEditor />
             </div>
           ) : (
           <div className="grid lg:grid-cols-3 gap-8">

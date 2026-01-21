@@ -16,9 +16,11 @@ const HeroSection = () => {
     >
       {/* Carpet texture background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute -inset-10 bg-cover bg-left"
         style={{
           backgroundImage: `url(${heroCarpetTexture})`,
+          transform: 'rotate(-8deg) scale(1.2)',
+          transformOrigin: 'center center',
         }}
       />
       

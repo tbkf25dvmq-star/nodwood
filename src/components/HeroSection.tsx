@@ -1,7 +1,15 @@
 import { ChevronDown } from "lucide-react";
 import heroCarpetTexture from "@/assets/hero-carpet-texture.jpeg";
+import { useHeroSettings } from "@/hooks/useHeroSettings";
 
 const HeroSection = () => {
+  const { data: settings } = useHeroSettings();
+  
+  // Default values fallback
+  const scale = settings?.scale ? Number(settings.scale) : 1.15;
+  const rotation = settings?.rotation ?? -10;
+  const positionY = settings?.position_y ?? 30;
+
   const scrollToProjects = () => {
     const element = document.getElementById("progetti");
     if (element) {
@@ -19,8 +27,8 @@ const HeroSection = () => {
         className="absolute -inset-40 bg-cover"
         style={{
           backgroundImage: `url(${heroCarpetTexture})`,
-          backgroundPosition: 'left 30%',
-          transform: 'rotate(-10deg) scale(1.15)',
+          backgroundPosition: `left ${positionY}%`,
+          transform: `rotate(${rotation}deg) scale(${scale})`,
           transformOrigin: 'center center',
         }}
       />

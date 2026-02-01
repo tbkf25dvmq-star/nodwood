@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 
 const Admin = () => {
-  const { user, isAdmin, loading: authLoading, signOut } = useAuth();
+  const { user, isAdmin, loading: authLoading, roleLoading, signOut } = useAuth();
   const { projects, loading: projectsLoading, refetch } = useProjects(true);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -51,7 +51,7 @@ const Admin = () => {
   }, [user, authLoading, navigate]);
 
   useEffect(() => {
-    if (!authLoading && user && !isAdmin) {
+    if (!authLoading && !roleLoading && user && !isAdmin) {
       toast({
         title: "Accesso negato",
         description: "Non hai i permessi di amministratore",
@@ -59,9 +59,9 @@ const Admin = () => {
       });
       navigate("/");
     }
-  }, [isAdmin, authLoading, user, navigate, toast]);
+  }, [isAdmin, authLoading, roleLoading, user, navigate, toast]);
 
-  if (authLoading || projectsLoading) {
+  if (authLoading || roleLoading || projectsLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <p className="font-body text-muted-foreground">Caricamento...</p>

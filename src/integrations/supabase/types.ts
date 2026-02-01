@@ -77,6 +77,30 @@ export type Database = {
         }
         Relationships: []
       }
+      logo_settings: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string | null
+          scale: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          scale?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          scale?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       project_photos: {
         Row: {
           caption: string | null

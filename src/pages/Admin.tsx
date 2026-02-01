@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import HeroSettingsEditor from "@/components/admin/HeroSettingsEditor";
 import BannerSettingsEditor from "@/components/admin/BannerSettingsEditor";
+import { LogoSettingsEditor } from "@/components/admin/LogoSettingsEditor";
 import { 
   Plus, 
   Trash2, 
@@ -35,6 +36,7 @@ const Admin = () => {
   const [isCreating, setIsCreating] = useState(false);
   const [showHeroSettings, setShowHeroSettings] = useState(false);
   const [showBannerSettings, setShowBannerSettings] = useState(false);
+  const [showLogoSettings, setShowLogoSettings] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -246,9 +248,17 @@ const Admin = () => {
             </div>
             <div className="flex items-center gap-2">
               <Button 
+                variant={showLogoSettings ? "default" : "outline"} 
+                size="sm"
+                onClick={() => { setShowLogoSettings(!showLogoSettings); setShowHeroSettings(false); setShowBannerSettings(false); }}
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Logo
+              </Button>
+              <Button 
                 variant={showHeroSettings ? "default" : "outline"} 
                 size="sm"
-                onClick={() => { setShowHeroSettings(!showHeroSettings); setShowBannerSettings(false); }}
+                onClick={() => { setShowHeroSettings(!showHeroSettings); setShowBannerSettings(false); setShowLogoSettings(false); }}
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Hero
@@ -256,7 +266,7 @@ const Admin = () => {
               <Button 
                 variant={showBannerSettings ? "default" : "outline"} 
                 size="sm"
-                onClick={() => { setShowBannerSettings(!showBannerSettings); setShowHeroSettings(false); }}
+                onClick={() => { setShowBannerSettings(!showBannerSettings); setShowHeroSettings(false); setShowLogoSettings(false); }}
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Banner
@@ -270,7 +280,11 @@ const Admin = () => {
         </header>
 
         <div className="container mx-auto px-6 py-8">
-          {showHeroSettings ? (
+          {showLogoSettings ? (
+            <div className="max-w-md mx-auto">
+              <LogoSettingsEditor />
+            </div>
+          ) : showHeroSettings ? (
             <div className="max-w-md mx-auto">
               <HeroSettingsEditor />
             </div>

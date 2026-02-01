@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import logoNod from "@/assets/logo-nod.png";
+import { useLogoSettings } from "@/hooks/useLogoSettings";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { settings: logoSettings } = useLogoSettings();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,9 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const logoScale = logoSettings?.scale || 1.5;
+  const logoSrc = logoSettings?.image_url || logoNod;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -36,9 +41,10 @@ const Header = () => {
           className="hover:opacity-80 transition-opacity"
         >
           <img 
-            src={logoNod} 
+            src={logoSrc} 
             alt="NOD Wood & Art" 
-            className="h-16 md:h-20 w-auto mix-blend-multiply"
+            style={{ height: `${logoScale * 40}px` }}
+            className="w-auto mix-blend-multiply"
           />
         </button>
 

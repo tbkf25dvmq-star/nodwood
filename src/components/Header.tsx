@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logoNod from "@/assets/logo-nod.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,9 +33,13 @@ const Header = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <button
           onClick={() => scrollToSection("hero")}
-          className="font-display text-2xl md:text-3xl font-medium tracking-wide text-foreground hover:text-accent transition-colors"
+          className="hover:opacity-80 transition-opacity"
         >
-          Legno & Arte
+          <img 
+            src={logoNod} 
+            alt="NOD Wood & Art" 
+            className="h-10 md:h-12 w-auto"
+          />
         </button>
 
         {/* Desktop Navigation */}

@@ -32,39 +32,48 @@ const AdminLogin = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (isSignUp) {
-      const { error } = await signUp(email, password);
-      if (error) {
-        toast({
-          title: "Errore di registrazione",
-          description: error.message,
-          variant: "destructive",
-        });
+    try {
+      if (isSignUp) {
+        const { error } = await signUp(email, password);
+        if (error) {
+          toast({
+            title: "Errore di registrazione",
+            description: error.message,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Registrazione completata",
+            description: "Account creato con successo. Contatta l'amministratore per ottenere l'accesso.",
+          });
+          setIsSignUp(false);
+        }
       } else {
-        toast({
-          title: "Registrazione completata",
-          description: "Account creato con successo. Contatta l'amministratore per ottenere l'accesso.",
-        });
-        setIsSignUp(false);
+        const { error } = await signIn(email, password);
+        if (error) {
+          toast({
+            title: "Errore di accesso",
+            description: "Email o password non corretti",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Accesso effettuato",
+            description: "Benvenuto nell'area amministrazione",
+          });
+          // niente navigate qui: ci pensa l'useEffect quando user/isAdmin sono pronti
+        }
       }
-    } else {
-      const { error } = await signIn(email, password);
-      if (error) {
-        toast({
-          title: "Errore di accesso",
-          description: "Email o password non corretti",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Accesso effettuato",
-          description: "Benvenuto nell'area amministrazione",
-        });
-        // niente navigate qui: ci pensa l'useEffect quando user/isAdmin sono pronti
-      }
+    } catch (err) {
+      console.error("[AdminLogin] submit failed", err);
+      toast({
+        title: "Errore",
+        description: "Si è verificato un errore durante l'accesso. Riprova.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   };
 
   return (

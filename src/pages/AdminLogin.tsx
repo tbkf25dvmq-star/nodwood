@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useAuth } from "@/hooks/useAuth";
@@ -12,9 +12,21 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, user, isAdmin, loading, roleLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Dopo il login, evitiamo di navigare subito: aspettiamo che il contesto auth
+  // abbia aggiornato user + ruolo, altrimenti /admin può reindirizzare a /admin-login
+  // perché vede user=null per un istante.
+  useEffect(() => {
+    if (isSignUp) return;
+    if (loading || roleLoading) return;
+
+    if (user && isAdmin) {
+      navigate("/admin", { replace: true });
+    }
+  }, [user, isAdmin, loading, roleLoading, navigate, isSignUp]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +60,7 @@ const AdminLogin = () => {
           title: "Accesso effettuato",
           description: "Benvenuto nell'area amministrazione",
         });
-        navigate("/admin");
+        // niente navigate qui: ci pensa l'useEffect quando user/isAdmin sono pronti
       }
     }
     

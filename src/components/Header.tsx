@@ -38,7 +38,7 @@ const Header = () => {
           <img 
             src={logoNod} 
             alt="NOD Wood & Art" 
-            className="h-10 md:h-12 w-auto"
+            className="h-16 md:h-20 w-auto mix-blend-multiply"
           />
         </button>
 

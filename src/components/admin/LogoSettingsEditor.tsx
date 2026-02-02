@@ -187,8 +187,8 @@ const LogoSettingsEditor = () => {
           value={[scale]}
           onValueChange={([v]) => setScale(v)}
           min={0.5}
-          max={2}
-          step={0.05}
+          max={4}
+          step={0.1}
         />
       </div>
 

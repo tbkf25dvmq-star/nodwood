@@ -25,8 +25,9 @@ const AdminLogin = () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        const { email: savedEmail } = JSON.parse(saved);
-        setEmail(savedEmail);
+        const { email: savedEmail, password: savedPassword } = JSON.parse(saved);
+        setEmail(savedEmail || "");
+        setPassword(savedPassword || "");
         setRememberMe(true);
       } catch (e) {
         localStorage.removeItem(STORAGE_KEY);
@@ -64,7 +65,7 @@ const AdminLogin = () => {
       } else {
         // Save or remove credentials based on checkbox
         if (rememberMe) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email }));
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, password }));
         } else {
           localStorage.removeItem(STORAGE_KEY);
         }

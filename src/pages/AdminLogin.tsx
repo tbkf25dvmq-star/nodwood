@@ -1,20 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
+
+const STORAGE_KEY = "nod_admin_remember";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Load saved credentials on mount
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const { email: savedEmail } = JSON.parse(saved);
+        setEmail(savedEmail);
+        setRememberMe(true);
+      } catch (e) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +62,13 @@ const AdminLogin = () => {
           variant: "destructive",
         });
       } else {
+        // Save or remove credentials based on checkbox
+        if (rememberMe) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email }));
+        } else {
+          localStorage.removeItem(STORAGE_KEY);
+        }
+        
         toast({
           title: "Accesso effettuato",
           description: "Benvenuto nell'area amministrazione",
@@ -99,7 +124,20 @@ const AdminLogin = () => {
               />
             </div>
 
-            <Button 
+            {!isSignUp && (
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="remember"
+                  checked={rememberMe}
+                  onCheckedChange={(checked) => setRememberMe(checked === true)}
+                />
+                <Label htmlFor="remember" className="text-sm font-normal cursor-pointer">
+                  Ricordami
+                </Label>
+              </div>
+            )}
+
+            <Button
               type="submit" 
               className="w-full" 
               disabled={isLoading}

@@ -15,7 +15,7 @@ const Footer = () => {
             className="h-8 w-auto"
             style={{ 
               transform: `scale(${logoSettings?.scale || 1})`,
-              transformOrigin: logoSettings?.position_x === "right" ? "right center" : logoSettings?.position_x === "center" ? "center center" : "left center"
+              transformOrigin: "left center"
             }}
           />
           <p className="font-body text-sm text-muted-foreground">

@@ -43,7 +43,7 @@ const Header = () => {
             className="h-10 md:h-12 w-auto"
             style={{ 
               transform: `scale(${logoSettings?.scale || 1})`,
-              transformOrigin: logoSettings?.position_x === "right" ? "right center" : logoSettings?.position_x === "center" ? "center center" : "left center"
+              transformOrigin: "left center"
             }}
           />
         </button>

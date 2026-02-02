@@ -16,13 +16,15 @@ const LogoSettingsEditor = () => {
   const [uploading, setUploading] = useState(false);
   
   const [scale, setScale] = useState<number>(1);
-  const [positionX, setPositionX] = useState<string>("left");
+  const [positionX, setPositionX] = useState<number>(0);
 
   // Sync local state when settings load
   useEffect(() => {
     if (settings) {
       setScale(settings.scale);
-      setPositionX(settings.position_x);
+      // Parse position_x as number, default to 0 if it's an old string value
+      const posNum = parseFloat(settings.position_x);
+      setPositionX(isNaN(posNum) ? 0 : posNum);
     }
   }, [settings]);
 
@@ -33,7 +35,7 @@ const LogoSettingsEditor = () => {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await updateSettings({ scale, position_x: positionX });
+      await updateSettings({ scale, position_x: String(positionX) });
       toast({ title: "Impostazioni logo salvate!" });
     } catch (error) {
       toast({ title: "Errore", description: String(error), variant: "destructive" });
@@ -114,16 +116,22 @@ const LogoSettingsEditor = () => {
       <h2 className="font-display text-lg">Impostazioni Logo</h2>
       
       {/* Preview */}
-      <div className="flex justify-center p-4 bg-secondary/50 rounded-lg">
-        <img 
-          src={currentLogoUrl} 
-          alt="Logo preview" 
-          className="max-h-20 w-auto"
+      <div className="relative p-4 bg-secondary/50 rounded-lg overflow-hidden">
+        <div 
+          className="flex"
           style={{ 
-            transform: `scale(${scale})`,
-            transformOrigin: positionX === "left" ? "left center" : positionX === "right" ? "right center" : "center center"
+            justifyContent: positionX <= 33 ? 'flex-start' : positionX >= 66 ? 'flex-end' : 'center',
+            paddingLeft: positionX < 33 ? `${positionX * 3}%` : 0,
+            paddingRight: positionX > 66 ? `${(100 - positionX) * 3}%` : 0
           }}
-        />
+        >
+          <img 
+            src={currentLogoUrl} 
+            alt="Logo preview" 
+            className="max-h-20 w-auto"
+            style={{ transform: `scale(${scale})` }}
+          />
+        </div>
       </div>
 
       {/* Generate transparent version */}
@@ -187,27 +195,26 @@ const LogoSettingsEditor = () => {
           value={[scale]}
           onValueChange={([v]) => setScale(v)}
           min={0.5}
-          max={4}
+          max={6}
           step={0.1}
         />
       </div>
 
       {/* Position X */}
-      <div className="space-y-2">
-        <Label>Posizione orizzontale</Label>
-        <div className="flex gap-2">
-          {["left", "center", "right"].map((pos) => (
-            <Button
-              key={pos}
-              variant={positionX === pos ? "default" : "outline"}
-              size="sm"
-              onClick={() => setPositionX(pos)}
-              className="flex-1"
-            >
-              {pos === "left" ? "Sinistra" : pos === "center" ? "Centro" : "Destra"}
-            </Button>
-          ))}
+      <div className="space-y-3">
+        <div className="flex justify-between">
+          <Label>Posizione orizzontale</Label>
+          <span className="text-sm text-muted-foreground">
+            {positionX <= 33 ? "Sinistra" : positionX >= 66 ? "Destra" : "Centro"}
+          </span>
         </div>
+        <Slider
+          value={[positionX]}
+          onValueChange={([v]) => setPositionX(v)}
+          min={0}
+          max={100}
+          step={1}
+        />
       </div>
 
       <Button onClick={handleSave} disabled={saving} className="w-full">

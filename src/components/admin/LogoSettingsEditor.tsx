@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLogoSettings } from "@/hooks/useLogoSettings";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -15,16 +15,16 @@ const LogoSettingsEditor = () => {
   const [generating, setGenerating] = useState(false);
   const [uploading, setUploading] = useState(false);
   
-  const [scale, setScale] = useState<number>(settings?.scale || 1);
-  const [positionX, setPositionX] = useState<string>(settings?.position_x || "left");
+  const [scale, setScale] = useState<number>(1);
+  const [positionX, setPositionX] = useState<string>("left");
 
-  // Update local state when settings load
-  useState(() => {
+  // Sync local state when settings load
+  useEffect(() => {
     if (settings) {
       setScale(settings.scale);
       setPositionX(settings.position_x);
     }
-  });
+  }, [settings]);
 
   if (loading) {
     return <div className="p-4 text-center text-muted-foreground">Caricamento...</div>;

@@ -82,6 +82,7 @@ export type Database = {
           created_at: string
           id: string
           image_url: string | null
+          position_x: string
           scale: number
           updated_at: string
         }
@@ -89,6 +90,7 @@ export type Database = {
           created_at?: string
           id?: string
           image_url?: string | null
+          position_x?: string
           scale?: number
           updated_at?: string
         }
@@ -96,6 +98,7 @@ export type Database = {
           created_at?: string
           id?: string
           image_url?: string | null
+          position_x?: string
           scale?: number
           updated_at?: string
         }

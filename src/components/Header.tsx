@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLogoSettings } from "@/hooks/useLogoSettings";
 import logoNod from "@/assets/logo-nod.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { settings: logoSettings } = useLogoSettings();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,9 +38,13 @@ const Header = () => {
           className="hover:opacity-80 transition-opacity"
         >
           <img 
-            src={logoNod} 
+            src={logoSettings?.image_url || logoNod} 
             alt="NOD Wood & Art" 
             className="h-10 md:h-12 w-auto"
+            style={{ 
+              transform: `scale(${logoSettings?.scale || 1})`,
+              transformOrigin: logoSettings?.position_x === "right" ? "right center" : logoSettings?.position_x === "center" ? "center center" : "left center"
+            }}
           />
         </button>
 

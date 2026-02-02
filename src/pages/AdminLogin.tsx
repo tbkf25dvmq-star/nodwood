@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useAuth } from "@/hooks/useAuth";
@@ -12,68 +12,47 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp, user, isAdmin, loading, roleLoading } = useAuth();
+  const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
-
-  // Dopo il login, evitiamo di navigare subito: aspettiamo che il contesto auth
-  // abbia aggiornato user + ruolo, altrimenti /admin può reindirizzare a /admin-login
-  // perché vede user=null per un istante.
-  useEffect(() => {
-    if (isSignUp) return;
-    if (loading || roleLoading) return;
-
-    if (user && isAdmin) {
-      navigate("/admin", { replace: true });
-    }
-  }, [user, isAdmin, loading, roleLoading, navigate, isSignUp]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      if (isSignUp) {
-        const { error } = await signUp(email, password);
-        if (error) {
-          toast({
-            title: "Errore di registrazione",
-            description: error.message,
-            variant: "destructive",
-          });
-        } else {
-          toast({
-            title: "Registrazione completata",
-            description: "Account creato con successo. Contatta l'amministratore per ottenere l'accesso.",
-          });
-          setIsSignUp(false);
-        }
+    if (isSignUp) {
+      const { error } = await signUp(email, password);
+      if (error) {
+        toast({
+          title: "Errore di registrazione",
+          description: error.message,
+          variant: "destructive",
+        });
       } else {
-        const { error } = await signIn(email, password);
-        if (error) {
-          toast({
-            title: "Errore di accesso",
-            description: "Email o password non corretti",
-            variant: "destructive",
-          });
-        } else {
-          toast({
-            title: "Accesso effettuato",
-            description: "Benvenuto nell'area amministrazione",
-          });
-          // niente navigate qui: ci pensa l'useEffect quando user/isAdmin sono pronti
-        }
+        toast({
+          title: "Registrazione completata",
+          description: "Account creato con successo. Contatta l'amministratore per ottenere l'accesso.",
+        });
+        setIsSignUp(false);
       }
-    } catch (err) {
-      console.error("[AdminLogin] submit failed", err);
-      toast({
-        title: "Errore",
-        description: "Si è verificato un errore durante l'accesso. Riprova.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+    } else {
+      const { error } = await signIn(email, password);
+      if (error) {
+        toast({
+          title: "Errore di accesso",
+          description: "Email o password non corretti",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Accesso effettuato",
+          description: "Benvenuto nell'area amministrazione",
+        });
+        navigate("/admin");
+      }
     }
+    
+    setIsLoading(false);
   };
 
   return (

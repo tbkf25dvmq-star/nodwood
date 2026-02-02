@@ -12,7 +12,6 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import HeroSettingsEditor from "@/components/admin/HeroSettingsEditor";
 import BannerSettingsEditor from "@/components/admin/BannerSettingsEditor";
-import { LogoSettingsEditor } from "@/components/admin/LogoSettingsEditor";
 import { 
   Plus, 
   Trash2, 
@@ -27,7 +26,7 @@ import {
 } from "lucide-react";
 
 const Admin = () => {
-  const { user, isAdmin, loading: authLoading, roleLoading, signOut } = useAuth();
+  const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const { projects, loading: projectsLoading, refetch } = useProjects(true);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -36,7 +35,6 @@ const Admin = () => {
   const [isCreating, setIsCreating] = useState(false);
   const [showHeroSettings, setShowHeroSettings] = useState(false);
   const [showBannerSettings, setShowBannerSettings] = useState(false);
-  const [showLogoSettings, setShowLogoSettings] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -51,7 +49,7 @@ const Admin = () => {
   }, [user, authLoading, navigate]);
 
   useEffect(() => {
-    if (!authLoading && !roleLoading && user && !isAdmin) {
+    if (!authLoading && user && !isAdmin) {
       toast({
         title: "Accesso negato",
         description: "Non hai i permessi di amministratore",
@@ -59,9 +57,9 @@ const Admin = () => {
       });
       navigate("/");
     }
-  }, [isAdmin, authLoading, roleLoading, user, navigate, toast]);
+  }, [isAdmin, authLoading, user, navigate, toast]);
 
-  if (authLoading || roleLoading || projectsLoading) {
+  if (authLoading || projectsLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <p className="font-body text-muted-foreground">Caricamento...</p>
@@ -248,17 +246,9 @@ const Admin = () => {
             </div>
             <div className="flex items-center gap-2">
               <Button 
-                variant={showLogoSettings ? "default" : "outline"} 
-                size="sm"
-                onClick={() => { setShowLogoSettings(!showLogoSettings); setShowHeroSettings(false); setShowBannerSettings(false); }}
-              >
-                <Settings className="w-4 h-4 mr-2" />
-                Logo
-              </Button>
-              <Button 
                 variant={showHeroSettings ? "default" : "outline"} 
                 size="sm"
-                onClick={() => { setShowHeroSettings(!showHeroSettings); setShowBannerSettings(false); setShowLogoSettings(false); }}
+                onClick={() => { setShowHeroSettings(!showHeroSettings); setShowBannerSettings(false); }}
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Hero
@@ -266,7 +256,7 @@ const Admin = () => {
               <Button 
                 variant={showBannerSettings ? "default" : "outline"} 
                 size="sm"
-                onClick={() => { setShowBannerSettings(!showBannerSettings); setShowHeroSettings(false); setShowLogoSettings(false); }}
+                onClick={() => { setShowBannerSettings(!showBannerSettings); setShowHeroSettings(false); }}
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Banner
@@ -280,11 +270,7 @@ const Admin = () => {
         </header>
 
         <div className="container mx-auto px-6 py-8">
-          {showLogoSettings ? (
-            <div className="max-w-md mx-auto">
-              <LogoSettingsEditor />
-            </div>
-          ) : showHeroSettings ? (
+          {showHeroSettings ? (
             <div className="max-w-md mx-auto">
               <HeroSettingsEditor />
             </div>

@@ -7,7 +7,6 @@ interface AuthContextType {
   session: Session | null;
   isAdmin: boolean;
   loading: boolean;
-  roleLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
@@ -20,9 +19,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [roleLoading, setRoleLoading] = useState(false);
 
-  const checkAdminRole = async (userId: string): Promise<boolean> => {
+  const checkAdminRole = async (userId: string) => {
     const { data } = await supabase
       .from("user_roles")
       .select("role")
@@ -30,9 +28,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       .eq("role", "admin")
       .maybeSingle();
     
-    const hasAdmin = !!data;
-    setIsAdmin(hasAdmin);
-    return hasAdmin;
+    setIsAdmin(!!data);
   };
 
   useEffect(() => {
@@ -43,28 +39,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          setRoleLoading(true);
-          await checkAdminRole(session.user.id);
-          setRoleLoading(false);
+          // Use setTimeout to avoid potential deadlock with Supabase client
+          setTimeout(() => checkAdminRole(session.user.id), 0);
         } else {
           setIsAdmin(false);
-          setRoleLoading(false);
         }
         setLoading(false);
       }
     );
 
     // Check for existing session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        setRoleLoading(true);
-        await checkAdminRole(session.user.id);
-        setRoleLoading(false);
-      } else {
-        setRoleLoading(false);
+        checkAdminRole(session.user.id);
       }
       setLoading(false);
     });
@@ -94,7 +84,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isAdmin, loading, roleLoading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, session, isAdmin, loading, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );

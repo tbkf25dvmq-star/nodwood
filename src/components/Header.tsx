@@ -36,6 +36,9 @@ const Header = () => {
         <button
           onClick={() => scrollToSection("hero")}
           className="hover:opacity-80 transition-opacity"
+          style={{
+            marginLeft: logoSettings?.position_x ? `${parseFloat(logoSettings.position_x) * 0.5}%` : 0
+          }}
         >
           <img 
             src={logoSettings?.image_url || logoNod} 

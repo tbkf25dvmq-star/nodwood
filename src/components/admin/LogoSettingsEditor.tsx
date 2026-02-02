@@ -205,13 +205,13 @@ const LogoSettingsEditor = () => {
         <div className="flex justify-between">
           <Label>Posizione orizzontale</Label>
           <span className="text-sm text-muted-foreground">
-            {positionX <= 33 ? "Sinistra" : positionX >= 66 ? "Destra" : "Centro"}
+            {positionX <= -10 ? "Estrema sinistra" : positionX <= 33 ? "Sinistra" : positionX >= 66 ? "Destra" : "Centro"}
           </span>
         </div>
         <Slider
           value={[positionX]}
           onValueChange={([v]) => setPositionX(v)}
-          min={0}
+          min={-30}
           max={100}
           step={1}
         />

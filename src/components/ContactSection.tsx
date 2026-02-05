@@ -22,16 +22,16 @@ const ContactSection = () => {
 
           {/* Contact info cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            <a
-              href="mailto:danieles.85@icloud.com"
+          <a
+              href="mailto:Nod.wood.art@gmail.com"
               className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
             >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                <Mail size={20} className="text-accent" />
+              <div className="p-3 bg-accent/10 rounded-sm group-hover:bg-accent/20 transition-colors">
+                <Mail className="w-6 h-6 text-accent" />
               </div>
               <div>
                 <p className="font-body text-sm text-muted-foreground">Email</p>
-                <p className="font-body text-foreground">danieles.85@icloud.com</p>
+                <p className="font-body text-foreground">Nod.wood.art@gmail.com</p>
               </div>
             </a>
 

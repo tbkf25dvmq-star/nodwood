@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Instagram } from "lucide-react";
+import { Mail, MapPin, Instagram } from "lucide-react";
 
 const ContactSection = () => {
   return (
@@ -36,32 +36,29 @@ const ContactSection = () => {
             </a>
 
             <a
-              href="tel:+393518478405"
-              className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
-            >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                <Phone size={20} className="text-accent" />
-              </div>
-              <div>
-                <p className="font-body text-sm text-muted-foreground">Telefono</p>
-                <p className="font-body text-foreground">+39 351 847 8405</p>
-              </div>
-            </a>
-
-            <a
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
             >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                <Instagram size={20} className="text-accent" />
+              <div className="p-3 bg-accent/10 rounded-sm group-hover:bg-accent/20 transition-colors">
+                <Instagram className="w-6 h-6 text-accent" />
               </div>
               <div>
                 <p className="font-body text-sm text-muted-foreground">Instagram</p>
                 <p className="font-body text-foreground">@tuoprofilo</p>
               </div>
             </a>
+
+            <div className="flex items-center gap-4 p-6 bg-card rounded-sm border border-border">
+              <div className="p-3 bg-accent/10 rounded-sm">
+                <MapPin className="w-6 h-6 text-accent" />
+              </div>
+              <div>
+                <p className="font-body text-sm text-muted-foreground">Località</p>
+                <p className="font-body text-foreground">Italia</p>
+              </div>
+            </div>
 
             <div className="flex items-center gap-4 p-6 bg-card rounded-sm border border-border">
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">

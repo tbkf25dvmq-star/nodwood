@@ -55,7 +55,7 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-10">
           {[
             { label: "Progetti", id: "progetti" },
-            { label: "Chi Sono", id: "chi-sono" },
+            { label: "Chi Siamo", id: "chi-sono" },
             { label: "Contatti", id: "contatti" },
           ].map((item) => (
             <button
@@ -84,7 +84,7 @@ const Header = () => {
           <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {[
               { label: "Progetti", id: "progetti" },
-              { label: "Chi Sono", id: "chi-sono" },
+              { label: "Chi Siamo", id: "chi-sono" },
               { label: "Contatti", id: "contatti" },
             ].map((item) => (
               <button

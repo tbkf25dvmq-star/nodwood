@@ -60,7 +60,7 @@ const ProjectsSection = () => {
             Portfolio
           </p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-foreground">
-            I Miei Progetti
+            I Nostri Progetti
           </h2>
           <div className="w-24 h-px bg-accent mx-auto mt-8" />
         </div>

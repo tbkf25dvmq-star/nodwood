@@ -8,18 +8,12 @@ const Footer = () => {
   return (
     <footer className="py-8 bg-secondary/50 border-t border-border">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div style={{ marginLeft: logoSettings?.position_x ? `${parseFloat(logoSettings.position_x) * 0.5}%` : 0 }}>
-            <img 
-              src={logoSettings?.image_url || logoNod} 
-              alt="NOD Wood & Art" 
-              className="h-8 w-auto"
-              style={{ 
-                transform: `scale(${logoSettings?.scale || 1})`,
-                transformOrigin: "left center"
-              }}
-            />
-          </div>
+        <div className="flex flex-col items-center gap-4">
+          <img 
+            src={logoSettings?.image_url || logoNod} 
+            alt="NOD Wood & Art" 
+            className="h-10 w-auto"
+          />
           <p className="font-body text-sm text-muted-foreground">
             © {currentYear} Tutti i diritti riservati
           </p>

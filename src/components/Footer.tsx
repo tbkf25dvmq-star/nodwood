@@ -12,7 +12,11 @@ const Footer = () => {
           <img 
             src={logoSettings?.image_url || logoNod} 
             alt="NOD Wood & Art" 
-            className="h-10 w-auto"
+            className="h-8 w-auto"
+            style={{ 
+              transform: `scale(${logoSettings?.scale || 1})`,
+              transformOrigin: "center center"
+            }}
           />
           <p className="font-body text-sm text-muted-foreground">
             © {currentYear} Tutti i diritti riservati

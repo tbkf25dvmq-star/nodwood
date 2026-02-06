@@ -29,21 +29,26 @@ const AboutSection = () => {
             </div>
 
             <div className="space-y-6 font-body text-muted-foreground leading-relaxed">
-              <p className="text-foreground font-display text-xl md:text-2xl font-light leading-relaxed">
-                NØD significa necessità.<br />
-                Una parola nordica, asciutta, autentica. Come il nostro modo di lavorare.
+              <p>
+                La passione per il legno ci accompagna da sempre. Siamo padre e figlio, 
+                uniti da un amore condiviso per la lavorazione del legno che si tramanda 
+                di generazione in generazione.
               </p>
               <p>
-                Crediamo che l'arredo non debba essere superfluo, ma necessario.<br />
-                Solido, onesto, destinato a durare.
+                Quello che è iniziato come un hobby nel laboratorio di famiglia si è 
+                trasformato in una vera e propria missione: dare nuova vita al legno 
+                attraverso creazioni uniche e funzionali, unendo l'esperienza della 
+                tradizione con la freschezza delle nuove idee.
               </p>
               <p>
-                Lavoriamo il castagno nel rispetto della sua natura: nodi, venature, imperfezioni diventano identità.<br />
-                Un design industriale, artigianale, contemporaneo — dove metallo e legno dialogano senza maschere.
+                Ogni pezzo che realizziamo racconta una storia. Dalla scelta del legno grezzo 
+                alla rifinitura finale, dedichiamo cura e attenzione a ogni dettaglio, 
+                rispettando le venature naturali e valorizzando l'unicità di ogni essenza.
               </p>
-              <p className="text-foreground font-display text-lg italic leading-relaxed">
-                NØD è l'essenziale che prende forma.<br />
-                È materia che vive, segnata dal tempo e pronta a restare.
+              <p>
+                Il nostro laboratorio è il luogo dove tradizione e creatività si incontrano, 
+                dove nascono oggetti pensati per durare nel tempo e portare un tocco di 
+                calore naturale nelle case.
               </p>
             </div>
 

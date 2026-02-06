@@ -20,14 +20,13 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Load saved credentials on mount
+  // Load saved email on mount (never store passwords)
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        const { email: savedEmail, password: savedPassword } = JSON.parse(saved);
+        const { email: savedEmail } = JSON.parse(saved);
         setEmail(savedEmail || "");
-        setPassword(savedPassword || "");
         setRememberMe(true);
       } catch (e) {
         localStorage.removeItem(STORAGE_KEY);
@@ -63,9 +62,9 @@ const AdminLogin = () => {
           variant: "destructive",
         });
       } else {
-        // Save or remove credentials based on checkbox
+        // Save or remove email based on checkbox (never store passwords)
         if (rememberMe) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, password }));
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email }));
         } else {
           localStorage.removeItem(STORAGE_KEY);
         }

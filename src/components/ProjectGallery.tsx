@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { X, ChevronUp } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { X, ChevronUp, ZoomIn, ZoomOut } from "lucide-react";
 import { ProjectPhoto } from "@/hooks/useProjects";
 
 interface ProjectGalleryProps {
@@ -21,6 +21,7 @@ const ProjectGallery = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [zoomedIndex, setZoomedIndex] = useState<number | null>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Prevent body scroll when gallery is open
@@ -39,7 +40,13 @@ const ProjectGallery = ({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (zoomedIndex !== null) {
+          setZoomedIndex(null);
+        } else {
+          onClose();
+        }
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
@@ -97,6 +104,10 @@ const ProjectGallery = ({
     scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const toggleZoom = useCallback((index: number) => {
+    setZoomedIndex((prev) => (prev === index ? null : index));
+  }, []);
+
   if (!isOpen || visiblePhotos.length === 0) return null;
 
   return (
@@ -123,16 +134,24 @@ const ProjectGallery = ({
                 ref={(el) => {
                   imageRefs.current[index] = el;
                 }}
-                className="w-full"
+                className="w-full flex flex-col items-center"
               >
-                <img
-                  src={photo.image_url}
-                  alt={photo.caption || `${projectTitle} - Foto ${index + 1}`}
-                  className="w-full h-auto object-contain rounded-sm"
-                  loading={index > 1 ? "lazy" : "eager"}
-                />
+                <div
+                  className="relative group cursor-pointer max-h-[85vh] flex items-center justify-center"
+                  onClick={() => toggleZoom(index)}
+                >
+                  <img
+                    src={photo.image_url}
+                    alt={photo.caption || `${projectTitle} - Foto ${index + 1}`}
+                    className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-sm"
+                    loading={index > 1 ? "lazy" : "eager"}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-foreground/5 rounded-sm">
+                    <ZoomIn className="w-8 h-8 text-foreground/60" />
+                  </div>
+                </div>
                 {photo.caption && (
-                  <p className="font-body text-xs text-muted-foreground mt-2 px-1">
+                  <p className="font-body text-xs text-muted-foreground mt-2 px-1 self-start">
                     {photo.caption}
                   </p>
                 )}
@@ -215,6 +234,27 @@ const ProjectGallery = ({
         >
           <ChevronUp className="w-5 h-5 text-foreground" />
         </button>
+      )}
+
+      {/* Zoom overlay */}
+      {zoomedIndex !== null && visiblePhotos[zoomedIndex] && (
+        <div
+          className="fixed inset-0 z-[70] bg-foreground/95 flex items-center justify-center cursor-zoom-out"
+          onClick={() => setZoomedIndex(null)}
+        >
+          <button
+            onClick={() => setZoomedIndex(null)}
+            className="absolute top-4 right-4 z-[80] p-2 text-background/80 hover:text-background transition-colors"
+            aria-label="Chiudi zoom"
+          >
+            <ZoomOut className="w-6 h-6" />
+          </button>
+          <img
+            src={visiblePhotos[zoomedIndex].image_url}
+            alt={visiblePhotos[zoomedIndex].caption || projectTitle}
+            className="max-w-[95vw] max-h-[95vh] object-contain"
+          />
+        </div>
       )}
     </div>
   );

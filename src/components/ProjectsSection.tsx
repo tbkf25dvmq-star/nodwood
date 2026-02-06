@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useProjects, Project } from "@/hooks/useProjects";
-import ProjectLightbox from "./ProjectLightbox";
+import ProjectGallery from "./ProjectGallery";
 
 // Fallback static projects (used when database is empty)
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
@@ -139,12 +139,12 @@ const ProjectsSection = () => {
         )}
       </div>
 
-      {/* Lightbox */}
+      {/* Gallery */}
       {lightboxProject && lightboxProject.photos && (
-        <ProjectLightbox
+        <ProjectGallery
           photos={lightboxProject.photos}
-          initialIndex={lightboxIndex}
           projectTitle={lightboxProject.title}
+          projectDescription={lightboxProject.description}
           isOpen={!!lightboxProject}
           onClose={() => setLightboxProject(null)}
         />

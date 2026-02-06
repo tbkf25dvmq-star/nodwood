@@ -59,16 +59,6 @@ const ContactSection = () => {
                 <p className="font-body text-foreground">Italia</p>
               </div>
             </div>
-
-            <div className="flex items-center gap-4 p-6 bg-card rounded-sm border border-border">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <MapPin size={20} className="text-accent" />
-              </div>
-              <div>
-                <p className="font-body text-sm text-muted-foreground">Località</p>
-                <p className="font-body text-foreground">Italia</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

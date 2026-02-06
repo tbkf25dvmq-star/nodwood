@@ -1,3 +1,5 @@
+import chiSiamoImage from "@/assets/chi-siamo-nod.png";
+
 const AboutSection = () => {
   return (
     <section id="chi-sono" className="py-24 md:py-32 bg-secondary/30">
@@ -7,7 +9,7 @@ const AboutSection = () => {
           <div className="relative opacity-0 animate-fade-in order-2 lg:order-1">
             <div className="aspect-[4/5] overflow-hidden rounded-sm">
               <img
-                src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&h=750&fit=crop&q=80"
+                src={chiSiamoImage}
                 alt="Lavorazione del legno"
                 className="w-full h-full object-cover"
               />

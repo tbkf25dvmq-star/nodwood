@@ -61,8 +61,29 @@ serve(async (req) => {
 
     const { imageBase64 } = await req.json();
     
-    if (!imageBase64) {
-      throw new Error("No image provided");
+    if (!imageBase64 || typeof imageBase64 !== "string") {
+      return new Response(JSON.stringify({ error: "No image provided" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Validate image size (max 10MB base64 string)
+    const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+    if (imageBase64.length > MAX_IMAGE_SIZE) {
+      return new Response(JSON.stringify({ error: "Image too large (max 10MB)" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Validate base64 image format
+    const base64ImageRegex = /^data:image\/(png|jpeg|jpg|webp);base64,/;
+    if (!base64ImageRegex.test(imageBase64)) {
+      return new Response(JSON.stringify({ error: "Invalid image format. Expected PNG, JPEG, or WebP." }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Call the AI to remove the background

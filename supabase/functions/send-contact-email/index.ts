@@ -64,7 +64,7 @@ serve(async (req) => {
     const resend = new Resend(RESEND_API_KEY);
 
     const emailResponse = await resend.emails.send({
-      from: "NOD Contatto <onboarding@resend.dev>",
+      from: "NOD Contatto <noreply@xn--ndwood-bya.com>",
       to: ["Nod.wood.art@gmail.com"],
       subject: `Nuovo messaggio da ${sanitizedName}`,
       reply_to: email.trim(),
@@ -87,6 +87,14 @@ serve(async (req) => {
     });
 
     console.log("Email sent:", emailResponse);
+
+    if (emailResponse.error) {
+      console.error("Resend error:", emailResponse.error);
+      return new Response(JSON.stringify({ error: emailResponse.error.message }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

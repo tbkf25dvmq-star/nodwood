@@ -17,7 +17,9 @@ const ProjectGallery = ({
   isOpen,
   onClose,
 }: ProjectGalleryProps) => {
-  const visiblePhotos = photos.filter((p) => p.is_visible);
+  const allVisible = photos.filter((p) => p.is_visible);
+  const visiblePhotos = allVisible.filter((p) => !p.caption?.startsWith("[variante]"));
+  const variantPhotos = allVisible.filter((p) => p.caption?.startsWith("[variante]"));
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -157,6 +159,37 @@ const ProjectGallery = ({
                 )}
               </div>
             ))}
+
+            {/* Varianti section */}
+            {variantPhotos.length > 0 && (
+              <div className="mt-16 md:mt-24 pt-12 border-t border-border/30">
+                <p className="font-body text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
+                  Varianti
+                </p>
+                {variantPhotos.map((variant) => {
+                  const variantTitle = variant.caption?.replace("[variante]", "").trim() || "";
+                  return (
+                    <div key={variant.id} className="space-y-6">
+                      <h3 className="font-display text-2xl md:text-3xl font-light text-foreground">
+                        {variantTitle}
+                      </h3>
+                      <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-lg">
+                        Questo progetto può essere realizzato in dimensioni e configurazioni diverse, 
+                        mantenendo lo stesso approccio costruttivo e la stessa qualità materica.
+                      </p>
+                      <div className="mt-8">
+                        <img
+                          src={variant.image_url}
+                          alt={variantTitle}
+                          className="max-w-full max-h-[70vh] w-auto h-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             {/* Bottom spacer for scroll */}
             <div className="h-16 md:h-24" />

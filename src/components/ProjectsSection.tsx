@@ -96,11 +96,11 @@ const ProjectsSection = () => {
 
         {/* Editorial layout */}
         {!loading && (
-          <div className="space-y-24 md:space-y-40">
+          <div className="space-y-32 md:space-y-52">
             {layoutGroups.map((group, groupIndex) => (
               <div
                 key={groupIndex}
-                className="grid grid-cols-12 gap-4 md:gap-6 items-start"
+                className="grid grid-cols-12 gap-4 md:gap-8 items-start"
               >
                 {group.map(({ project, layout }, itemIndex) => {
                   const isDbProject = 'photos' in project;
@@ -129,16 +129,16 @@ const ProjectsSection = () => {
                       </div>
 
                       {/* Caption — minimal, underneath */}
-                      <div className="mt-4 md:mt-5">
+                      <div className="mt-5 md:mt-7">
                         <h3 className={`font-display text-foreground leading-tight ${
                           layout.size === 'hero' || layout.size === 'cinematic'
-                            ? 'text-2xl md:text-3xl'
-                            : 'text-xl md:text-2xl'
+                            ? 'text-2xl md:text-4xl'
+                            : 'text-lg md:text-2xl'
                         }`}>
                           {project.title}
                         </h3>
                         {project.description && (
-                          <p className="font-body text-sm text-muted-foreground mt-1.5 max-w-md">
+                          <p className="font-body text-[13px] text-muted-foreground mt-2 md:mt-3 max-w-lg leading-relaxed">
                             {project.description}
                           </p>
                         )}

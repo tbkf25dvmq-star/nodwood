@@ -2,139 +2,159 @@ import { useState } from "react";
 import { useProjects, Project } from "@/hooks/useProjects";
 import ProjectGallery from "./ProjectGallery";
 
-// Fallback static projects (used when database is empty)
+// Fallback static projects
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
 import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.png";
 import consolleIndustrial from "@/assets/projects/consolle-industrial-complete.png";
 import lampadaSospensione from "@/assets/projects/lampada-sospensione-industrial.png";
 
 const fallbackProjects = [
-  {
-    id: "1",
-    title: "Libreria in Castagno Antico",
-    description: "Libreria realizzata interamente in castagno antico, lavorata a mano senza l'uso di viti",
-    image: libreriaCastagno,
-  },
-  {
-    id: "2",
-    title: "Mobile TV Industrial",
-    description: "Mobile TV in stile industrial con gambe in ferro naturale non verniciato e contenitori in stoffa nera a contrasto",
-    image: mobileTvIndustrial,
-  },
-  {
-    id: "3",
-    title: "Consolle Industrial",
-    description: "Tavolo da lavoro e consolle d'ingresso in castagno antico lavorato a mano, con gambe in ferro pieno grezzo e saldature a vista",
-    image: consolleIndustrial,
-  },
-  {
-    id: "4",
-    title: "Sospensione a 3 Luci Industrial Wood",
-    description: "Linee geometriche e carattere grezzo. Realizzato in legno massello lavorato a mano con tre punti luce regolabili",
-    image: lampadaSospensione,
-  },
+  { id: "1", title: "Libreria in Castagno Antico", description: "Castagno antico, lavorata a mano senza viti", image: libreriaCastagno },
+  { id: "2", title: "Mobile TV Industrial", description: "Ferro naturale e contenitori in stoffa nera", image: mobileTvIndustrial },
+  { id: "3", title: "Consolle Industrial", description: "Castagno antico con gambe in ferro pieno grezzo", image: consolleIndustrial },
+  { id: "4", title: "Sospensione a 3 Luci", description: "Legno massello con tre punti luce regolabili", image: lampadaSospensione },
+];
+
+// Editorial layout patterns that cycle for visual variety
+const layoutPatterns = [
+  // Pattern A: Large left, small right
+  [
+    { colSpan: "md:col-span-7", aspect: "aspect-[3/4]", size: "hero" },
+    { colSpan: "md:col-span-5 md:mt-24", aspect: "aspect-[4/5]", size: "secondary" },
+  ],
+  // Pattern B: Small left, large right
+  [
+    { colSpan: "md:col-span-5 md:mt-16", aspect: "aspect-[4/5]", size: "secondary" },
+    { colSpan: "md:col-span-7", aspect: "aspect-[3/4]", size: "hero" },
+  ],
+  // Pattern C: Full width cinematic
+  [
+    { colSpan: "md:col-span-8 md:col-start-3", aspect: "aspect-[16/9]", size: "cinematic" },
+  ],
+  // Pattern D: Two equal, offset
+  [
+    { colSpan: "md:col-span-5 md:col-start-2", aspect: "aspect-[4/5]", size: "secondary" },
+    { colSpan: "md:col-span-5 md:mt-32", aspect: "aspect-[3/4]", size: "secondary" },
+  ],
 ];
 
 const ProjectsSection = () => {
   const { projects, loading } = useProjects();
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  // Use database projects if available, otherwise use fallback
   const hasDbProjects = projects.length > 0;
   const displayProjects = hasDbProjects ? projects : fallbackProjects;
 
-  const openLightbox = (project: Project, photoIndex: number = 0) => {
+  const openLightbox = (project: Project) => {
     if (project.photos && project.photos.length > 0) {
       setLightboxProject(project);
-      setLightboxIndex(photoIndex);
     }
   };
 
+  // Distribute projects into layout groups
+  const layoutGroups: { project: typeof displayProjects[0]; layout: typeof layoutPatterns[0][0] }[][] = [];
+  let projectIndex = 0;
+
+  while (projectIndex < displayProjects.length) {
+    const patternIndex = layoutGroups.length % layoutPatterns.length;
+    const pattern = layoutPatterns[patternIndex];
+    const group: { project: typeof displayProjects[0]; layout: typeof layoutPatterns[0][0] }[] = [];
+
+    for (const slot of pattern) {
+      if (projectIndex < displayProjects.length) {
+        group.push({ project: displayProjects[projectIndex], layout: slot });
+        projectIndex++;
+      }
+    }
+    layoutGroups.push(group);
+  }
+
   return (
-    <section id="progetti" className="py-24 md:py-32 bg-background">
-      <div className="container mx-auto px-6">
-        {/* Section header */}
-        <div className="text-center mb-16 md:mb-24">
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            Portfolio
+    <section id="progetti" className="py-32 md:py-48 bg-background">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+        {/* Section header — minimal, editorial */}
+        <div className="mb-24 md:mb-40">
+          <p className="font-body text-[11px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
+            Progetti
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-foreground">
-            I Nostri Progetti
+          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground leading-[0.95]">
+            Le nostre<br />creazioni
           </h2>
-          <div className="w-24 h-px bg-accent mx-auto mt-8" />
         </div>
 
-        {/* Loading state */}
+        {/* Loading */}
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="aspect-[4/3] bg-muted animate-pulse rounded-sm" />
+          <div className="space-y-16">
+            {[1, 2].map((i) => (
+              <div key={i} className="grid grid-cols-12 gap-4 md:gap-6">
+                <div className="col-span-12 md:col-span-7 aspect-[3/4] bg-muted animate-pulse" />
+                <div className="col-span-12 md:col-span-5 aspect-[4/5] bg-muted animate-pulse md:mt-24" />
+              </div>
             ))}
           </div>
         )}
 
-        {/* Projects grid */}
+        {/* Editorial layout */}
         {!loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {displayProjects.map((project, index) => {
-              // Handle both database projects and fallback projects
-              const isDbProject = 'photos' in project;
-              const coverImage = isDbProject 
-                ? (project as Project).cover_photo?.image_url 
-                : (project as typeof fallbackProjects[0]).image;
-              const hasMultiplePhotos = isDbProject && (project as Project).photos && (project as Project).photos!.length > 1;
+          <div className="space-y-24 md:space-y-40">
+            {layoutGroups.map((group, groupIndex) => (
+              <div
+                key={groupIndex}
+                className="grid grid-cols-12 gap-4 md:gap-6 items-start"
+              >
+                {group.map(({ project, layout }, itemIndex) => {
+                  const isDbProject = 'photos' in project;
+                  const coverImage = isDbProject
+                    ? (project as Project).cover_photo?.image_url
+                    : (project as typeof fallbackProjects[0]).image;
+                  const hasPhotos = isDbProject && (project as Project).photos?.length;
+                  const globalIndex = groupIndex * 2 + itemIndex;
 
-              return (
-                <div 
-                  key={project.id}
-                  className={`group relative overflow-hidden bg-card rounded-sm opacity-0 animate-fade-in ${
-                    isDbProject && (project as Project).photos?.length ? 'cursor-pointer' : ''
-                  }`}
-                  style={{ animationDelay: `${0.1 * index}s` }}
-                  onClick={() => isDbProject && openLightbox(project as Project)}
-                >
-                  {/* Image container */}
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
-                      src={coverImage}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="font-display text-2xl md:text-3xl text-primary-foreground mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                      {project.title}
-                    </h3>
-                    <p className="font-body text-sm text-primary-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                      {project.description}
-                    </p>
-                    {hasMultiplePhotos && (
-                      <p className="font-body text-xs text-primary-foreground/60 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300">
-                        Clicca per vedere tutte le foto ({(project as Project).photos?.filter(p => p.is_visible).length})
-                      </p>
-                    )}
-                  </div>
-                  
-                  {/* Always visible title */}
-                  <div className="p-4 bg-card border-t border-border group-hover:opacity-0 transition-opacity duration-300">
-                    <h3 className="font-display text-xl text-card-foreground">{project.title}</h3>
-                  </div>
-                </div>
-              );
-            })}
+                  return (
+                    <div
+                      key={project.id}
+                      className={`col-span-12 ${layout.colSpan} opacity-0 animate-fade-in ${
+                        hasPhotos ? 'cursor-pointer' : ''
+                      }`}
+                      style={{ animationDelay: `${0.15 * globalIndex}s` }}
+                      onClick={() => isDbProject && openLightbox(project as Project)}
+                    >
+                      {/* Image */}
+                      <div className={`${layout.aspect} overflow-hidden group`}>
+                        <img
+                          src={coverImage}
+                          alt={project.title}
+                          className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                        />
+                      </div>
+
+                      {/* Caption — minimal, underneath */}
+                      <div className="mt-4 md:mt-5">
+                        <h3 className={`font-display text-foreground leading-tight ${
+                          layout.size === 'hero' || layout.size === 'cinematic'
+                            ? 'text-2xl md:text-3xl'
+                            : 'text-xl md:text-2xl'
+                        }`}>
+                          {project.title}
+                        </h3>
+                        {project.description && (
+                          <p className="font-body text-sm text-muted-foreground mt-1.5 max-w-md">
+                            {project.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         )}
 
-        {/* Info note for static projects */}
+        {/* Fallback note */}
         {!hasDbProjects && !loading && (
-          <p className="text-center mt-16 text-muted-foreground font-body text-sm italic">
-            Queste sono immagini di esempio. Accedi come admin per gestire i progetti.
+          <p className="text-center mt-24 text-muted-foreground font-body text-xs italic">
+            Immagini di esempio. Accedi come admin per gestire i progetti.
           </p>
         )}
       </div>

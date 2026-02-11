@@ -38,6 +38,13 @@ const layoutPatterns = [
   ],
 ];
 
+// IDs of projects that should show the full object (object-contain)
+const containIds = new Set([
+  "a1b2c3d4-e5f6-7890-abcd-333333333333", // Consolle Industrial
+  "2fbee35f-bc8f-4602-8f93-5777de647e8e", // Scaffale Angolare
+  "a1b2c3d4-e5f6-7890-abcd-444444444444", // Sospensione a 3 Luci
+]);
+
 const ProjectsSection = () => {
   const { projects, loading } = useProjects();
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
@@ -120,11 +127,15 @@ const ProjectsSection = () => {
                       onClick={() => isDbProject && openLightbox(project as Project)}
                     >
                       {/* Image */}
-                      <div className={`${layout.aspect} overflow-hidden group`}>
+                      <div className={`${layout.aspect} overflow-hidden group ${
+                        containIds.has(project.id) ? 'bg-muted' : ''
+                      }`}>
                         <img
                           src={coverImage}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                          className={`w-full h-full transition-transform duration-1000 ease-out group-hover:scale-[1.03] ${
+                            containIds.has(project.id) ? 'object-contain' : 'object-cover'
+                          }`}
                         />
                       </div>
 

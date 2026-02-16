@@ -45,6 +45,11 @@ const containIds = new Set([
   "a1b2c3d4-e5f6-7890-abcd-444444444444", // Sospensione a 3 Luci
 ]);
 
+// Custom scale overrides for specific projects
+const scaleOverrides: Record<string, number> = {
+  "a1b2c3d4-e5f6-7890-abcd-444444444444": 0.9, // Sospensione a 3 Luci: -10%
+};
+
 const ProjectsSection = () => {
   const { projects, loading } = useProjects();
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
@@ -136,6 +141,7 @@ const ProjectsSection = () => {
                           className={`w-full h-full transition-transform duration-1000 ease-out group-hover:scale-[1.03] ${
                             containIds.has(project.id) ? 'object-contain' : 'object-cover'
                           }`}
+                          style={scaleOverrides[project.id] ? { transform: `scale(${scaleOverrides[project.id]})` } : undefined}
                         />
                       </div>
 

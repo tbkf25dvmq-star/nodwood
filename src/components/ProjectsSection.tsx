@@ -82,14 +82,14 @@ const ProjectsSection = () => {
   }
 
   return (
-    <section id="progetti" className="py-32 md:py-48 bg-background">
+    <section id="progetti" className="py-20 md:py-32 lg:py-48 bg-background">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         {/* Section header — minimal, editorial */}
-        <div className="mb-24 md:mb-40">
-          <p className="font-body text-[11px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
+        <div className="mb-16 md:mb-32 lg:mb-40">
+          <p className="font-body text-[11px] tracking-[0.4em] uppercase text-muted-foreground mb-4 md:mb-6">
             Progetti
           </p>
-          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground leading-[0.95]">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-7xl font-light text-foreground leading-[0.95]">
             Le nostre<br />creazioni
           </h2>
         </div>
@@ -108,7 +108,7 @@ const ProjectsSection = () => {
 
         {/* Editorial layout */}
         {!loading && (
-          <div className="space-y-32 md:space-y-52">
+          <div className="space-y-20 md:space-y-36 lg:space-y-52">
             {layoutGroups.map((group, groupIndex) => (
               <div
                 key={groupIndex}
@@ -146,16 +146,16 @@ const ProjectsSection = () => {
                       </div>
 
                       {/* Caption — minimal, underneath */}
-                      <div className="mt-5 md:mt-7">
+                      <div className="mt-4 md:mt-6">
                         <h3 className={`font-display text-foreground leading-tight ${
                           layout.size === 'hero' || layout.size === 'cinematic'
-                            ? 'text-2xl md:text-4xl'
-                            : 'text-lg md:text-2xl'
+                            ? 'text-xl md:text-3xl lg:text-4xl'
+                            : 'text-lg md:text-xl lg:text-2xl'
                         }`}>
                           {project.title}
                         </h3>
                         {project.description && (
-                          <p className="font-body text-[13px] text-muted-foreground mt-2 md:mt-3 max-w-lg leading-relaxed">
+                          <p className="font-body text-[13px] text-muted-foreground mt-2 max-w-lg leading-relaxed">
                             {project.description}
                           </p>
                         )}

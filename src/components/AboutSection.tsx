@@ -2,7 +2,7 @@ import chiSiamoImage from "@/assets/chi-siamo-nod.png";
 
 const AboutSection = () => {
   return (
-    <section id="chi-sono" className="py-24 md:py-32 bg-secondary/30">
+    <section id="chi-sono" className="py-16 md:py-24 lg:py-32 bg-secondary/30">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image side */}
@@ -21,10 +21,10 @@ const AboutSection = () => {
           {/* Text side */}
           <div className="space-y-8 order-1 lg:order-2">
             <div>
-              <p className="font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
+              <p className="font-body text-[11px] tracking-[0.35em] uppercase text-muted-foreground mb-4">
                 La Nostra Storia
               </p>
-              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground leading-tight">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight">
                 Chi Siamo
               </h2>
               <div className="w-16 h-px bg-accent mt-6" />

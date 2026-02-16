@@ -38,24 +38,24 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
 
       <div className="relative container mx-auto px-6 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
           <p 
-            className="font-body text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground opacity-0 animate-fade-in"
+            className="font-body text-[11px] md:text-xs tracking-[0.35em] uppercase text-muted-foreground opacity-0 animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
             Artigianato & Passione
           </p>
           
           <h1 
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-light text-foreground leading-tight opacity-0 animate-fade-in"
+            className="font-display text-4xl md:text-6xl lg:text-8xl font-light text-foreground leading-[0.95] opacity-0 animate-fade-in"
             style={{ animationDelay: "0.4s" }}
           >
             Quando il legno
-            <span className="block italic text-accent">incontra l'arte</span>
+            <span className="block italic text-accent mt-1">incontra l'arte</span>
           </h1>
           
           <p 
-            className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in"
+            className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed opacity-0 animate-fade-in"
             style={{ animationDelay: "0.6s" }}
           >
             Creazioni uniche realizzate a mano, dove ogni venatura racconta una storia

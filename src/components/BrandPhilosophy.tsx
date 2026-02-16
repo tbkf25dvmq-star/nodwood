@@ -1,17 +1,17 @@
 const BrandPhilosophy = () => {
   return (
-    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Subtle decorative accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-accent/30" />
 
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center space-y-10">
           {/* Opening quote mark */}
-          <span className="block font-display text-8xl md:text-9xl text-accent/20 leading-none select-none">
+          <span className="block font-display text-7xl md:text-8xl text-accent/15 leading-none select-none">
             "
           </span>
 
-          <div className="space-y-8 -mt-8">
+          <div className="space-y-6 -mt-6">
             <p className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-foreground leading-snug italic">
               NØD significa necessità.
             </p>
@@ -48,7 +48,7 @@ const BrandPhilosophy = () => {
           </div>
 
           {/* Closing quote mark */}
-          <span className="block font-display text-8xl md:text-9xl text-accent/20 leading-none select-none rotate-180">
+          <span className="block font-display text-7xl md:text-8xl text-accent/15 leading-none select-none rotate-180">
             "
           </span>
         </div>

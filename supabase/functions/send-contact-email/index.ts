@@ -8,12 +8,45 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Simple in-memory rate limiter: max 5 requests per IP per 10 minutes
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const RATE_LIMIT_MAX = 5;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  
+  entry.count++;
+  if (entry.count > RATE_LIMIT_MAX) {
+    return true;
+  }
+  return false;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Rate limiting by IP
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("cf-connecting-ip") || 
+                     "unknown";
+    
+    if (isRateLimited(clientIp)) {
+      return new Response(JSON.stringify({ error: "Troppi messaggi inviati. Riprova tra qualche minuto." }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     if (!RESEND_API_KEY) {
       throw new Error("RESEND_API_KEY is not configured");
@@ -90,7 +123,7 @@ serve(async (req) => {
 
     if (emailResponse.error) {
       console.error("Resend error:", emailResponse.error);
-      return new Response(JSON.stringify({ error: emailResponse.error.message }), {
+      return new Response(JSON.stringify({ error: "Errore nell'invio dell'email" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -102,8 +135,7 @@ serve(async (req) => {
     });
   } catch (error: unknown) {
     console.error("Error:", error);
-    const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    return new Response(JSON.stringify({ error: errorMessage }), {
+    return new Response(JSON.stringify({ error: "Si è verificato un errore. Riprova più tardi." }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

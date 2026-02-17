@@ -83,7 +83,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="progetti" className="py-20 md:py-32 lg:py-48 bg-background">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         {/* Section header — minimal, editorial */}
         <div className="mb-16 md:mb-32 lg:mb-40">
           <p className="font-body text-[11px] tracking-[0.4em] uppercase text-muted-foreground mb-4 md:mb-6">

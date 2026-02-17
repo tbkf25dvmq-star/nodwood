@@ -8,7 +8,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ title, description, image, index }: ProjectCardProps) => {
   return (
     <div 
-      className="group relative overflow-hidden bg-card rounded-sm opacity-0 animate-fade-in"
+      className="group relative overflow-hidden bg-card rounded-sm shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] opacity-0 animate-fade-in"
       style={{ animationDelay: `${0.1 * index}s` }}
     >
       {/* Image container */}
@@ -34,7 +34,7 @@ const ProjectCard = ({ title, description, image, index }: ProjectCardProps) => 
       </div>
       
       {/* Always visible title */}
-      <div className="p-4 bg-card border-t border-border group-hover:opacity-0 transition-opacity duration-300">
+      <div className="p-4 bg-card group-hover:opacity-0 transition-opacity duration-300">
         <h3 className="font-display text-xl text-card-foreground">{title}</h3>
       </div>
     </div>

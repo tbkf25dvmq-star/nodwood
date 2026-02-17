@@ -7,15 +7,13 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image side */}
           <div className="relative opacity-0 animate-fade-in order-2 lg:order-1">
-            <div className="overflow-hidden rounded-sm">
+            <div className="overflow-hidden rounded-sm shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)]">
               <img
                 src={chiSiamoImage}
                 alt="NOD Wood & Art - Lavorazione del legno"
                 className="w-full h-auto"
               />
             </div>
-            {/* Decorative frame */}
-            <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-accent/30 rounded-sm -z-10" />
           </div>
 
           {/* Text side */}

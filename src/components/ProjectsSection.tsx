@@ -133,7 +133,7 @@ const ProjectsSection = () => {
                     >
                       {/* Image */}
                       <div className={`${layout.aspect} overflow-hidden group shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] ${
-                        containIds.has(project.id) ? 'bg-muted' : ''
+                        containIds.has(project.id) ? 'bg-[hsl(38,20%,96%)]' : ''
                       }`}>
                         <img
                           src={coverImage}

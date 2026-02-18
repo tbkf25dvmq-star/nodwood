@@ -37,11 +37,14 @@ const Footer = () => {
           <img
             src={logoSettings?.image_url || logoNod}
             alt="NOD Wood & Art"
-            className="h-9 w-auto opacity-85 mb-4"
+            className="w-auto opacity-90 mb-4"
             style={{
-              imageRendering: "crisp-edges",
-              maxWidth: "100%",
+              height: "68px",
               display: "block",
+              background: "none",
+              boxShadow: "none",
+              border: "none",
+              padding: 0,
             }}
           />
           <p className="font-body text-[10px] text-muted-foreground tracking-[0.15em]">

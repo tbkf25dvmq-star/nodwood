@@ -40,6 +40,8 @@ const Footer = () => {
             className="h-9 w-auto opacity-85 mb-4"
             style={{
               imageRendering: "crisp-edges",
+              maxWidth: "100%",
+              display: "block",
             }}
           />
           <p className="font-body text-[10px] text-muted-foreground tracking-[0.15em]">

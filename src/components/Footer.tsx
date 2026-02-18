@@ -11,32 +11,33 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-10 bg-secondary/40 border-t border-accent/20">
+    <footer className="pt-8 pb-8 bg-secondary/40 border-t border-accent/20">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center gap-5">
+        <div className="flex flex-col items-center gap-4">
           {/* Back to top */}
           <button
             onClick={scrollToTop}
-            className="flex flex-col items-center gap-1.5 text-accent/50 hover:text-accent transition-colors duration-300 group cursor-pointer"
+            className="flex flex-col items-center gap-1 text-accent/50 hover:text-accent transition-colors duration-300 group cursor-pointer mb-1"
             aria-label="Torna in cima"
           >
-            <ChevronUp size={22} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
+            <ChevronUp size={20} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
             <span className="font-body text-[9px] tracking-[0.4em] uppercase">
               Top
             </span>
           </button>
 
-          <div className="w-8 h-px bg-accent/50" />
+          <div className="w-6 h-px bg-accent/40" />
+
           <img 
             src={logoSettings?.image_url || logoNod} 
             alt="NOD Wood & Art" 
-            className="h-8 w-auto opacity-80"
+            className="h-7 w-auto opacity-75"
             style={{ 
               transform: `scale(${logoSettings?.scale || 1})`,
               transformOrigin: "center center"
             }}
           />
-          <p className="font-body text-xs text-muted-foreground tracking-[0.15em]">
+          <p className="font-body text-[10px] text-muted-foreground tracking-[0.15em]">
             © {currentYear} NOD Wood & Art · Tutti i diritti riservati
           </p>
         </div>

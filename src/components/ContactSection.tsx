@@ -60,7 +60,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section ref={sectionRef} id="contatti" className="section-fade py-16 md:py-24 lg:py-32 bg-background">
+    <section ref={sectionRef} id="contatti" className="section-fade pt-16 pb-10 md:pt-24 md:pb-14 lg:pt-32 lg:pb-16 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Section header */}

@@ -6,7 +6,7 @@ const Footer = () => {
   const { settings: logoSettings } = useLogoSettings();
 
   return (
-    <footer className="py-8 bg-secondary/50 border-t border-border">
+    <footer className="py-8 bg-secondary/60 border-t border-accent/15">
       <div className="container mx-auto px-6">
         <div className="flex flex-col items-center gap-4">
           <img 

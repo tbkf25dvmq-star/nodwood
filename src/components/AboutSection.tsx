@@ -55,12 +55,12 @@ const AboutSection = () => {
               </p>
             </div>
 
-            {/* Signature or name */}
-            <div className="pt-4">
-              <p className="font-display text-2xl italic text-foreground">
+            {/* Signature */}
+            <div className="pt-4 border-t border-accent/20">
+              <p className="font-display text-2xl italic text-foreground mt-4">
                 — Dario & Daniele
               </p>
-              <p className="font-body text-sm text-muted-foreground mt-1">
+              <p className="font-body text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
                 Artigiani del legno
               </p>
             </div>

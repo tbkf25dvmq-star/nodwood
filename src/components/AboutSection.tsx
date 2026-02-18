@@ -1,8 +1,11 @@
 import chiSiamoImage from "@/assets/chi-siamo-nod.png";
+import { useSectionFade } from "@/hooks/useSectionFade";
 
 const AboutSection = () => {
+  const sectionRef = useSectionFade();
+
   return (
-    <section id="chi-sono" className="py-16 md:py-24 lg:py-32 bg-secondary/30">
+    <section ref={sectionRef} id="chi-sono" className="section-fade py-16 md:py-24 lg:py-32 bg-secondary/30">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image side */}
@@ -11,7 +14,7 @@ const AboutSection = () => {
               <img
                 src={chiSiamoImage}
                 alt="NOD Wood & Art - Lavorazione del legno"
-                className="w-full h-auto"
+                className="w-full h-auto img-hover"
               />
             </div>
           </div>

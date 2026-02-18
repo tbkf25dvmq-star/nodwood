@@ -106,10 +106,20 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
+    line-height: 1.75;
+    font-size: 15px;
+    letter-spacing: 0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    line-height: 0.93;
+    color: hsl(var(--foreground));
+  }
+
+  p {
+    line-height: 1.8;
   }
 }
 

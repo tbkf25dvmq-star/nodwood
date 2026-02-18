@@ -88,10 +88,10 @@ const ProjectsSection = () => {
       <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         {/* Section header — minimal, editorial */}
         <div className="mb-16 md:mb-32 lg:mb-40">
-          <p className="font-body text-[11px] tracking-[0.4em] uppercase text-muted-foreground mb-4 md:mb-6">
+          <p className="font-body text-[10px] tracking-[0.5em] uppercase text-muted-foreground mb-4 md:mb-6">
             Progetti
           </p>
-          <h2 className="font-display text-3xl md:text-5xl lg:text-7xl font-light text-foreground leading-[0.95]">
+          <h2 className="font-display text-4xl md:text-6xl lg:text-[76px] font-light text-foreground leading-[0.9] tracking-[-0.015em]">
             Le nostre<br />creazioni
           </h2>
         </div>
@@ -149,15 +149,15 @@ const ProjectsSection = () => {
 
                       {/* Caption — minimal, underneath */}
                       <div className="mt-4 md:mt-6">
-                        <h3 className={`font-display text-foreground leading-tight ${
+                        <h3 className={`font-display text-foreground leading-tight tracking-[-0.01em] ${
                           layout.size === 'hero' || layout.size === 'cinematic'
-                            ? 'text-xl md:text-3xl lg:text-4xl'
-                            : 'text-lg md:text-xl lg:text-2xl'
+                            ? 'text-2xl md:text-[28px] lg:text-4xl'
+                            : 'text-xl md:text-2xl lg:text-[26px]'
                         }`}>
                           {project.title}
                         </h3>
                         {project.description && (
-                          <p className="font-body text-[13px] text-muted-foreground mt-2 max-w-lg leading-relaxed">
+                          <p className="font-body text-[12px] tracking-wide text-muted-foreground mt-2 max-w-lg leading-[1.8]">
                             {project.description}
                           </p>
                         )}

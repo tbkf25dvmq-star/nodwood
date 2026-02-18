@@ -1,6 +1,10 @@
+import { useSectionFade } from "@/hooks/useSectionFade";
+
 const BrandPhilosophy = () => {
+  const sectionRef = useSectionFade();
+
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="section-fade py-16 md:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Subtle decorative accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-accent/30" />
 

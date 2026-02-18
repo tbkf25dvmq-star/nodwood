@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useProjects, Project } from "@/hooks/useProjects";
 import ProjectGallery from "./ProjectGallery";
+import { useSectionFade } from "@/hooks/useSectionFade";
 
 // Fallback static projects
 import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
@@ -53,6 +54,7 @@ const scaleOverrides: Record<string, number> = {
 const ProjectsSection = () => {
   const { projects, loading } = useProjects();
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
+  const sectionRef = useSectionFade(0.05);
 
   const hasDbProjects = projects.length > 0;
   const displayProjects = hasDbProjects ? projects : fallbackProjects;
@@ -82,7 +84,7 @@ const ProjectsSection = () => {
   }
 
   return (
-    <section id="progetti" className="py-20 md:py-32 lg:py-48 bg-background">
+    <section ref={sectionRef} id="progetti" className="section-fade py-20 md:py-32 lg:py-48 bg-background">
       <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         {/* Section header — minimal, editorial */}
         <div className="mb-16 md:mb-32 lg:mb-40">
@@ -135,10 +137,10 @@ const ProjectsSection = () => {
                       <div className={`${layout.aspect} overflow-hidden group shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] ${
                         containIds.has(project.id) ? 'bg-[hsl(38,20%,96%)]' : ''
                       }`}>
-                        <img
+                         <img
                           src={coverImage}
                           alt={project.title}
-                          className={`w-full h-full transition-transform duration-1000 ease-out group-hover:scale-[1.03] ${
+                          className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.02] group-hover:brightness-[1.03] ${
                             containIds.has(project.id) ? 'object-contain' : 'object-cover'
                           }`}
                           style={scaleOverrides[project.id] ? { transform: `scale(${scaleOverrides[project.id]})` } : undefined}

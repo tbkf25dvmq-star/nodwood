@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSectionFade } from "@/hooks/useSectionFade";
 import { Mail, MapPin, Instagram, Send, Loader2, CheckCircle } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -19,6 +20,7 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 const ContactSection = () => {
+  const sectionRef = useSectionFade();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
@@ -58,7 +60,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contatti" className="py-16 md:py-24 lg:py-32 bg-background">
+    <section ref={sectionRef} id="contatti" className="section-fade py-16 md:py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Section header */}
@@ -138,7 +140,7 @@ const ContactSection = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting || isSuccess}
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-body px-8 py-3 rounded-sm tracking-wider uppercase text-sm transition-all"
+                    className="bg-accent hover:bg-accent/80 text-accent-foreground font-body px-8 py-3 rounded-sm tracking-wider uppercase text-sm transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <>

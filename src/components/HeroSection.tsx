@@ -66,11 +66,11 @@ const HeroSection = () => {
       {/* Scroll indicator */}
       <button
         onClick={scrollToProjects}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-accent transition-colors opacity-0 animate-fade-in cursor-pointer"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-accent/60 hover:text-accent transition-colors duration-300 opacity-0 animate-fade-in cursor-pointer"
         style={{ animationDelay: "1s" }}
         aria-label="Scorri verso i progetti"
       >
-        <ChevronDown size={32} className="animate-bounce" />
+        <ChevronDown size={28} className="animate-bounce" />
       </button>
     </section>
   );

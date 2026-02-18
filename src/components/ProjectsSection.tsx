@@ -88,12 +88,13 @@ const ProjectsSection = () => {
       <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         {/* Section header — minimal, editorial */}
         <div className="mb-16 md:mb-32 lg:mb-40">
-          <p className="font-body text-[10px] tracking-[0.5em] uppercase text-muted-foreground mb-4 md:mb-6">
+          <p className="font-body text-[10px] tracking-[0.5em] uppercase text-accent/70 mb-4 md:mb-6">
             Progetti
           </p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-[76px] font-light text-foreground leading-[0.9] tracking-[-0.015em]">
             Le nostre<br />creazioni
           </h2>
+          <div className="w-10 h-px bg-accent mt-6" />
         </div>
 
         {/* Loading */}
@@ -147,8 +148,9 @@ const ProjectsSection = () => {
                         />
                       </div>
 
-                      {/* Caption — minimal, underneath */}
+                       {/* Caption — minimal, underneath */}
                       <div className="mt-4 md:mt-6">
+                        <div className="w-6 h-px bg-accent/50 mb-3" />
                         <h3 className={`font-display text-foreground leading-tight tracking-[-0.01em] ${
                           layout.size === 'hero' || layout.size === 'cinematic'
                             ? 'text-2xl md:text-[28px] lg:text-4xl'

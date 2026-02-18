@@ -40,22 +40,22 @@ const HeroSection = () => {
       <div className="relative container mx-auto px-6 text-center">
         <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
           <p 
-            className="font-body text-[11px] md:text-xs tracking-[0.35em] uppercase text-muted-foreground opacity-0 animate-fade-in"
+            className="font-body text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-muted-foreground opacity-0 animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
             Artigianato & Passione
           </p>
           
           <h1 
-            className="font-display text-4xl md:text-6xl lg:text-8xl font-light text-foreground leading-[0.95] opacity-0 animate-fade-in"
+            className="font-display text-5xl md:text-7xl lg:text-[88px] font-light text-foreground leading-[0.9] tracking-[-0.02em] opacity-0 animate-fade-in"
             style={{ animationDelay: "0.4s" }}
           >
             Quando il legno
-            <span className="block italic text-accent mt-1">incontra l'arte</span>
+            <span className="block italic text-accent mt-2">incontra l'arte</span>
           </h1>
           
           <p 
-            className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed opacity-0 animate-fade-in"
+            className="font-body text-sm md:text-base text-muted-foreground max-w-md mx-auto leading-[1.85] opacity-0 animate-fade-in tracking-wide"
             style={{ animationDelay: "0.6s" }}
           >
             Creazioni uniche realizzate a mano, dove ogni venatura racconta una storia

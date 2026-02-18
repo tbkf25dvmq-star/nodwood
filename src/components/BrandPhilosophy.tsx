@@ -16,10 +16,10 @@ const BrandPhilosophy = () => {
           </span>
 
           <div className="space-y-6 -mt-6">
-            <p className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-foreground leading-snug italic">
+            <p className="font-display text-3xl md:text-4xl lg:text-[44px] font-light text-foreground leading-[1.05] tracking-[-0.01em] italic">
               NØD significa necessità.
             </p>
-            <p className="font-body text-base md:text-lg text-muted-foreground leading-relaxed">
+            <p className="font-body text-sm md:text-base text-muted-foreground leading-[1.85] tracking-wide">
               Una parola nordica, asciutta, autentica. Come il nostro modo di lavorare.
             </p>
           </div>

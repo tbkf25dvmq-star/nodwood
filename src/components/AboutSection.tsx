@@ -22,10 +22,10 @@ const AboutSection = () => {
           {/* Text side */}
           <div className="space-y-8 order-1 lg:order-2">
             <div>
-              <p className="font-body text-[11px] tracking-[0.35em] uppercase text-muted-foreground mb-4">
+              <p className="font-body text-[10px] tracking-[0.5em] uppercase text-muted-foreground mb-4">
                 La Nostra Storia
               </p>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight">
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[0.92] tracking-[-0.015em]">
                 Chi Siamo
               </h2>
               <div className="w-16 h-px bg-accent mt-6" />

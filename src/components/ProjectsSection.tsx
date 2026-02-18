@@ -84,7 +84,7 @@ const ProjectsSection = () => {
   }
 
   return (
-    <section ref={sectionRef} id="progetti" className="section-fade py-20 md:py-32 lg:py-48 bg-background">
+    <section ref={sectionRef} id="progetti" className="section-fade pt-12 pb-20 md:pt-16 md:pb-32 lg:pt-20 lg:pb-48 bg-background">
       <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         {/* Section header — minimal, editorial */}
         <div className="mb-16 md:mb-32 lg:mb-40">

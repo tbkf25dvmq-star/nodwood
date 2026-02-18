@@ -71,8 +71,8 @@ const ContactSection = () => {
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-[-0.015em]">
               Restiamo in Contatto
             </h2>
-            <div className="w-24 h-px bg-accent mx-auto mt-8" />
-            <p className="font-body text-muted-foreground mt-8 max-w-xl mx-auto leading-relaxed">
+            <div className="w-24 h-px bg-accent/50 mx-auto mt-8" />
+            <p className="font-body text-sm text-muted-foreground mt-8 max-w-xl mx-auto leading-[1.85]">
               Hai un progetto in mente o vuoi semplicemente saperne di più sulle nostre creazioni? 
               Scrivici, saremo felici di risponderti.
             </p>
@@ -90,9 +90,9 @@ const ContactSection = () => {
                       <FormItem>
                         <FormLabel className="font-body text-sm text-muted-foreground">Nome</FormLabel>
                         <FormControl>
-                          <Input
+                        <Input
                             placeholder="Il tuo nome"
-                            className="bg-card border-border rounded-sm font-body focus-visible:ring-accent"
+                            className="bg-background border-border/80 rounded-sm font-body focus-visible:ring-accent focus-visible:ring-1 focus-visible:border-accent/60 transition-colors duration-200"
                             {...field}
                           />
                         </FormControl>
@@ -107,10 +107,10 @@ const ContactSection = () => {
                       <FormItem>
                         <FormLabel className="font-body text-sm text-muted-foreground">Email</FormLabel>
                         <FormControl>
-                          <Input
+                        <Input
                             type="email"
                             placeholder="La tua email"
-                            className="bg-card border-border rounded-sm font-body focus-visible:ring-accent"
+                            className="bg-background border-border/80 rounded-sm font-body focus-visible:ring-accent focus-visible:ring-1 focus-visible:border-accent/60 transition-colors duration-200"
                             {...field}
                           />
                         </FormControl>
@@ -128,7 +128,7 @@ const ContactSection = () => {
                       <FormControl>
                         <Textarea
                           placeholder="Raccontaci il tuo progetto o la tua idea..."
-                          className="bg-card border-border rounded-sm font-body min-h-[150px] focus-visible:ring-accent"
+                          className="bg-background border-border/80 rounded-sm font-body min-h-[150px] focus-visible:ring-accent focus-visible:ring-1 focus-visible:border-accent/60 transition-colors duration-200"
                           {...field}
                         />
                       </FormControl>
@@ -168,14 +168,14 @@ const ContactSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <a
               href="mailto:Nod.wood.art@gmail.com"
-              className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
+              className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/40 transition-all duration-300"
             >
-              <div className="p-3 bg-accent/10 rounded-sm group-hover:bg-accent/20 transition-colors">
-                <Mail className="w-6 h-6 text-accent" />
+              <div className="p-3 bg-accent/8 rounded-sm group-hover:bg-accent/15 transition-colors duration-300">
+                <Mail className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <p className="font-body text-sm text-muted-foreground">Email</p>
-                <p className="font-body text-foreground">Nod.wood.art@gmail.com</p>
+                <p className="font-body text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Email</p>
+                <p className="font-body text-sm text-foreground mt-0.5">Nod.wood.art@gmail.com</p>
               </div>
             </a>
 
@@ -183,24 +183,24 @@ const ContactSection = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/50 transition-colors"
+              className="group flex items-center gap-4 p-6 bg-card rounded-sm border border-border hover:border-accent/40 transition-all duration-300"
             >
-              <div className="p-3 bg-accent/10 rounded-sm group-hover:bg-accent/20 transition-colors">
-                <Instagram className="w-6 h-6 text-accent" />
+              <div className="p-3 bg-accent/8 rounded-sm group-hover:bg-accent/15 transition-colors duration-300">
+                <Instagram className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <p className="font-body text-sm text-muted-foreground">Instagram</p>
-                <p className="font-body text-foreground">@tuoprofilo</p>
+                <p className="font-body text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Instagram</p>
+                <p className="font-body text-sm text-foreground mt-0.5">@tuoprofilo</p>
               </div>
             </a>
 
             <div className="flex items-center gap-4 p-6 bg-card rounded-sm border border-border">
-              <div className="p-3 bg-accent/10 rounded-sm">
-                <MapPin className="w-6 h-6 text-accent" />
+              <div className="p-3 bg-accent/8 rounded-sm">
+                <MapPin className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <p className="font-body text-sm text-muted-foreground">Località</p>
-                <p className="font-body text-foreground">Italia</p>
+                <p className="font-body text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Località</p>
+                <p className="font-body text-sm text-foreground mt-0.5">Italia</p>
               </div>
             </div>
           </div>

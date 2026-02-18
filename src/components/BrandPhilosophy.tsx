@@ -6,7 +6,7 @@ const BrandPhilosophy = () => {
   return (
     <section ref={sectionRef} className="section-fade py-16 md:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Subtle decorative accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-accent/30" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-accent/40" />
 
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center space-y-10">

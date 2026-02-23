@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { X, ChevronUp, ZoomIn, ZoomOut } from "lucide-react";
 import { ProjectPhoto } from "@/hooks/useProjects";
 import OptimizedImage from "./OptimizedImage";
@@ -113,7 +114,7 @@ const ProjectGallery = ({
 
   if (!isOpen || visiblePhotos.length === 0) return null;
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 bg-background">
       {/* Close button — always visible, prominent */}
       <button
@@ -290,7 +291,8 @@ const ProjectGallery = ({
           />
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 };
 

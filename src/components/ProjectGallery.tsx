@@ -115,10 +115,10 @@ const ProjectGallery = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-background">
-      {/* Close button */}
+      {/* Close button — always visible, prominent */}
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 z-[60] p-2 bg-background/80 backdrop-blur-sm rounded-full border border-border hover:bg-muted transition-colors"
+        className="fixed top-4 right-4 z-[60] p-2.5 bg-card/90 backdrop-blur-sm rounded-full border border-border shadow-md hover:bg-muted transition-colors"
         aria-label="Chiudi"
       >
         <X className="w-5 h-5 text-foreground" />

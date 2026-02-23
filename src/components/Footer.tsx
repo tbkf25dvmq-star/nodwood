@@ -39,7 +39,7 @@ const Footer = () => {
             alt="NOD Wood & Art"
             className="footer-logo w-auto opacity-90 mb-4"
             style={{
-              height: "72px",
+              height: "110px",
               width: "auto",
               background: "transparent",
               padding: 0,

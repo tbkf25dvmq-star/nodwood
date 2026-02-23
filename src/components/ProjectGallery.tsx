@@ -123,11 +123,12 @@ const ProjectGallery = ({
         <X className="w-5 h-5 text-foreground" />
       </button>
 
-      <div className="h-full flex flex-col md:flex-row">
+      <div className="h-full flex flex-col md:flex-row overflow-hidden">
         {/* Left: Scrollable images */}
         <div
           ref={scrollRef}
-          className="flex-1 overflow-y-auto scroll-smooth"
+          className="flex-1 overflow-y-auto scroll-smooth overscroll-contain"
+          style={{ WebkitOverflowScrolling: "touch" }}
         >
           <div className="max-w-4xl mx-auto px-4 md:px-8 pt-20 md:pt-12 pb-8 md:pb-12 space-y-4 md:space-y-6">
             {visiblePhotos.map((photo, index) => (

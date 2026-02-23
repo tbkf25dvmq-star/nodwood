@@ -1,3 +1,5 @@
+import OptimizedImage from "./OptimizedImage";
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -13,9 +15,10 @@ const ProjectCard = ({ title, description, image, index }: ProjectCardProps) => 
     >
       {/* Image container */}
       <div className="aspect-[4/3] overflow-hidden">
-        <img
+        <OptimizedImage
           src={image}
           alt={title}
+          wrapperClassName="w-full h-full"
           className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
         />
       </div>

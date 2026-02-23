@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { X, ChevronUp, ZoomIn, ZoomOut } from "lucide-react";
 import { ProjectPhoto } from "@/hooks/useProjects";
+import OptimizedImage from "./OptimizedImage";
 
 interface ProjectGalleryProps {
   photos: ProjectPhoto[];
@@ -143,11 +144,11 @@ const ProjectGallery = ({
                   className="relative group cursor-pointer max-h-[85vh] flex items-center justify-center"
                   onClick={() => toggleZoom(index)}
                 >
-                  <img
+                  <OptimizedImage
                     src={photo.image_url}
                     alt={photo.caption || `${projectTitle} - Foto ${index + 1}`}
+                    priority={index === 0}
                     className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-sm"
-                    loading={index > 1 ? "lazy" : "eager"}
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-foreground/5 rounded-sm">
                     <ZoomIn className="w-8 h-8 text-foreground/60" />
@@ -179,11 +180,10 @@ const ProjectGallery = ({
                         mantenendo lo stesso approccio costruttivo e la stessa qualità materica.
                       </p>
                       <div className="mt-8">
-                        <img
+                        <OptimizedImage
                           src={variant.image_url}
                           alt={variantTitle}
                           className="max-w-full max-h-[70vh] w-auto h-auto object-contain"
-                          loading="lazy"
                         />
                       </div>
                     </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useProjects, Project } from "@/hooks/useProjects";
 import ProjectGallery from "./ProjectGallery";
+import OptimizedImage from "./OptimizedImage";
 import { useSectionFade } from "@/hooks/useSectionFade";
 
 // Fallback static projects
@@ -138,9 +139,11 @@ const ProjectsSection = () => {
                       <div className={`${layout.aspect} overflow-hidden group shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] ${
                         containIds.has(project.id) ? 'bg-[hsl(38,20%,96%)]' : ''
                       }`}>
-                         <img
+                         <OptimizedImage
                           src={coverImage}
                           alt={project.title}
+                          priority={groupIndex === 0 && itemIndex === 0}
+                          wrapperClassName="w-full h-full"
                           className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.02] group-hover:brightness-[1.03] ${
                             containIds.has(project.id) ? 'object-contain' : 'object-cover'
                           }`}

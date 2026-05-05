@@ -77,8 +77,13 @@ serve(async (req) => {
       });
     }
 
-    const sanitizedName = name.trim().replace(/[<>]/g, "");
-    const sanitizedMessage = message.trim().replace(/[<>]/g, "");
+    const escapeHtml = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+    const trimmedEmail = email.trim();
+    const sanitizedName = escapeHtml(name.trim());
+    const sanitizedMessage = escapeHtml(message.trim());
+    const sanitizedEmail = escapeHtml(trimmedEmail);
 
     // Save to database
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
@@ -87,7 +92,7 @@ serve(async (req) => {
 
     const { error: dbError } = await supabase
       .from("contact_messages")
-      .insert({ name: sanitizedName, email: email.trim(), message: sanitizedMessage });
+      .insert({ name: name.trim(), email: trimmedEmail, message: message.trim() });
 
     if (dbError) {
       console.error("DB error:", dbError);
@@ -100,7 +105,7 @@ serve(async (req) => {
       from: "NOD Contatto <noreply@xn--ndwood-bya.com>",
       to: ["Nod.wood.art@gmail.com"],
       subject: `Nuovo messaggio da ${sanitizedName}`,
-      reply_to: email.trim(),
+      reply_to: trimmedEmail,
       html: `
         <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #faf8f5; border-radius: 8px;">
           <h1 style="font-size: 24px; color: #3d2e1f; margin-bottom: 24px; border-bottom: 2px solid #c47a2e; padding-bottom: 12px;">
@@ -108,7 +113,7 @@ serve(async (req) => {
           </h1>
           <div style="background: white; padding: 24px; border-radius: 6px; border: 1px solid #e8e0d5;">
             <p style="margin: 0 0 12px; color: #666;"><strong style="color: #3d2e1f;">Nome:</strong> ${sanitizedName}</p>
-            <p style="margin: 0 0 12px; color: #666;"><strong style="color: #3d2e1f;">Email:</strong> <a href="mailto:${email.trim()}" style="color: #c47a2e;">${email.trim()}</a></p>
+            <p style="margin: 0 0 12px; color: #666;"><strong style="color: #3d2e1f;">Email:</strong> <a href="mailto:${encodeURI(trimmedEmail)}" style="color: #c47a2e;">${sanitizedEmail}</a></p>
             <p style="margin: 0 0 8px; color: #666;"><strong style="color: #3d2e1f;">Messaggio:</strong></p>
             <p style="margin: 0; color: #444; white-space: pre-wrap; line-height: 1.6;">${sanitizedMessage}</p>
           </div>

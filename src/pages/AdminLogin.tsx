@@ -15,8 +15,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -38,45 +37,27 @@ const AdminLogin = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (isSignUp) {
-      const { error } = await signUp(email, password);
-      if (error) {
-        toast({
-          title: "Errore di registrazione",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Registrazione completata",
-          description: "Account creato con successo. Contatta l'amministratore per ottenere l'accesso.",
-        });
-        setIsSignUp(false);
-      }
+    const { error } = await signIn(email, password);
+    if (error) {
+      toast({
+        title: "Errore di accesso",
+        description: "Email o password non corretti",
+        variant: "destructive",
+      });
     } else {
-      const { error } = await signIn(email, password);
-      if (error) {
-        toast({
-          title: "Errore di accesso",
-          description: "Email o password non corretti",
-          variant: "destructive",
-        });
+      if (rememberMe) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ email }));
       } else {
-        // Save or remove email based on checkbox (never store passwords)
-        if (rememberMe) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email }));
-        } else {
-          localStorage.removeItem(STORAGE_KEY);
-        }
-        
-        toast({
-          title: "Accesso effettuato",
-          description: "Benvenuto nell'area amministrazione",
-        });
-        navigate("/admin");
+        localStorage.removeItem(STORAGE_KEY);
       }
+
+      toast({
+        title: "Accesso effettuato",
+        description: "Benvenuto nell'area amministrazione",
+      });
+      navigate("/admin");
     }
-    
+
     setIsLoading(false);
   };
 
@@ -86,15 +67,13 @@ const AdminLogin = () => {
         <title>Admin Login | Legno & Arte</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      
+
       <div className="min-h-screen bg-background flex items-center justify-center px-6">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="font-display text-3xl text-foreground">
-              {isSignUp ? "Registrazione Admin" : "Area Admin"}
-            </h1>
+            <h1 className="font-display text-3xl text-foreground">Area Admin</h1>
             <p className="font-body text-muted-foreground mt-2">
-              {isSignUp ? "Crea un nuovo account" : "Accedi per gestire i tuoi progetti"}
+              Accedi per gestire i tuoi progetti
             </p>
           </div>
 
@@ -124,48 +103,29 @@ const AdminLogin = () => {
               />
             </div>
 
-            {!isSignUp && (
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="remember"
-                  checked={rememberMe}
-                  onCheckedChange={(checked) => setRememberMe(checked === true)}
-                />
-                <Label htmlFor="remember" className="text-sm font-normal cursor-pointer">
-                  Ricordami
-                </Label>
-              </div>
-            )}
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="remember"
+                checked={rememberMe}
+                onCheckedChange={(checked) => setRememberMe(checked === true)}
+              />
+              <Label htmlFor="remember" className="text-sm font-normal cursor-pointer">
+                Ricordami
+              </Label>
+            </div>
 
-            <Button
-              type="submit" 
-              className="w-full" 
-              disabled={isLoading}
-            >
-              {isLoading 
-                ? (isSignUp ? "Registrazione..." : "Accesso in corso...") 
-                : (isSignUp ? "Registrati" : "Accedi")
-              }
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Accesso in corso..." : "Accedi"}
             </Button>
           </form>
 
-          <div className="mt-6 text-center space-y-4">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="font-body text-sm text-primary hover:underline"
+          <div className="mt-6 text-center">
+            <a
+              href="/"
+              className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              {isSignUp ? "Hai già un account? Accedi" : "Non hai un account? Registrati"}
-            </button>
-            
-            <div>
-              <a 
-                href="/" 
-                className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                ← Torna al sito
-              </a>
-            </div>
+              ← Torna al sito
+            </a>
           </div>
         </div>
       </div>

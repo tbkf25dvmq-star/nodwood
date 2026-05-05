@@ -5,10 +5,10 @@ import OptimizedImage from "./OptimizedImage";
 import { useSectionFade } from "@/hooks/useSectionFade";
 
 // Fallback static projects
-import libreriaCastagno from "@/assets/projects/libreria-castagno.png";
-import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.png";
-import consolleIndustrial from "@/assets/projects/consolle-industrial-complete.png";
-import lampadaSospensione from "@/assets/projects/lampada-sospensione-industrial.png";
+import libreriaCastagno from "@/assets/projects/libreria-castagno.webp";
+import mobileTvIndustrial from "@/assets/projects/mobile-tv-industrial.webp";
+import consolleIndustrial from "@/assets/projects/consolle-industrial-complete.webp";
+import lampadaSospensione from "@/assets/projects/lampada-sospensione-industrial.webp";
 
 const fallbackProjects = [
   { id: "1", title: "Libreria in Castagno Antico", description: "Castagno antico, lavorata a mano senza viti", image: libreriaCastagno },

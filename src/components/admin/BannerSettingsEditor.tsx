@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, RotateCcw } from "lucide-react";
-import carpetImage from "@/assets/decorative-carpet.png";
+import carpetImage from "@/assets/decorative-carpet.webp";
 import ImageUploader from "./ImageUploader";
 
 const BannerSettingsEditor = () => {

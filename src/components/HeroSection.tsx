@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import heroCarpetTexture from "@/assets/hero-carpet-texture.jpeg";
+import heroCarpetTexture from "@/assets/hero-carpet-texture.webp";
 import { useHeroSettings } from "@/hooks/useHeroSettings";
 
 const HeroSection = () => {

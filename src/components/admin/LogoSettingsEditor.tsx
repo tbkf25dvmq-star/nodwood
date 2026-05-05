@@ -6,7 +6,7 @@ import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Wand2, Upload } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import logoNod from "@/assets/logo-nod.png";
+import logoNod from "@/assets/logo-nod.webp";
 
 const LogoSettingsEditor = () => {
   const { settings, loading, updateSettings, refetch } = useLogoSettings();

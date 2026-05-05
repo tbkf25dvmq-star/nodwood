@@ -1,6 +1,6 @@
 import { ChevronUp } from "lucide-react";
 import { useLogoSettings } from "@/hooks/useLogoSettings";
-import logoNod from "@/assets/logo-nod.png";
+import logoNod from "@/assets/logo-nod.webp";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

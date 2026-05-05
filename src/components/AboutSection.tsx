@@ -1,4 +1,4 @@
-import chiSiamoImage from "@/assets/chi-siamo-nod.png";
+import chiSiamoImage from "@/assets/chi-siamo-nod.webp";
 import { useSectionFade } from "@/hooks/useSectionFade";
 
 const AboutSection = () => {

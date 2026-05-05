@@ -1,4 +1,4 @@
-import carpetImage from "@/assets/decorative-carpet.png";
+import carpetImage from "@/assets/decorative-carpet.webp";
 import { useBannerSettings } from "@/hooks/useBannerSettings";
 
 const DecorativeBanner = () => {

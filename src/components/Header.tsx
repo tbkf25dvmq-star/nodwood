@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useLogoSettings } from "@/hooks/useLogoSettings";
-import logoNod from "@/assets/logo-nod.png";
+import logoNod from "@/assets/logo-nod.webp";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, RotateCcw } from "lucide-react";
-import heroCarpetTexture from "@/assets/hero-carpet-texture.jpeg";
+import heroCarpetTexture from "@/assets/hero-carpet-texture.webp";
 import ImageUploader from "./ImageUploader";
 
 const HeroSettingsEditor = () => {
